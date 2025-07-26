@@ -1,5 +1,5 @@
 {
-  "name": "pnpm-turbo-monorepo-template",
+  "name": "eslint-configs",
   "private": true,
   "engines": {
     "node": ">=22.14.0",
