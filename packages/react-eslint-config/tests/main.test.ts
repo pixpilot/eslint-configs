@@ -1,0 +1,7 @@
+import { describe, it, expect } from 'vitest';
+import { name } from '../src';
+describe('name', () => {
+  it('should be defined', () => {
+    expect(name).toBeDefined();
+  });
+});
