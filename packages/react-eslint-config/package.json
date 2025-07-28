@@ -1,13 +1,11 @@
 {
   "name": "@pixpilot/react-eslint-config",
-  "version": "0.0.0",
-  "keywords": [],
-  "license": "MIT",
-  "author": "pixpilot",
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.12.2",
+  "author": "pixpilot",
+  "license": "MIT",
+  "keywords": [],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -15,6 +13,9 @@
       "require": "./dist/index.cjs"
     }
   },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -43,6 +44,5 @@
     "@pixpilot/dev-config": "catalog:dev",
     "@types/node": "catalog:dev",
     "rollup": "catalog:dev"
-  },
-  "packageManager": "pnpm@10.12.2"
+  }
 }

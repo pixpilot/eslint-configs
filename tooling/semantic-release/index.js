@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 export default {
   branches: [
     // Production branch for stable releases (e.g., 1.5.0)
@@ -21,7 +22,6 @@ export default {
     [
       '@semantic-release/exec',
       {
-        // https://github.com/semantic-release/npm/issues/280
         prepareCmd: 'pnpm version ${nextRelease.version} --git-tag-version=false',
         publishCmd: 'pnpm publish --no-git-checks',
       },

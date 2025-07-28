@@ -1,8 +1,8 @@
 {
   "name": "@internal/semantic-release",
-  "private": true,
-  "version": "0.1.0",
   "type": "module",
+  "version": "0.1.0",
+  "private": true,
   "exports": {
     ".": "./index.js"
   },
@@ -16,8 +16,8 @@
     "@internal/eslint-config": "workspace:*",
     "@internal/tsconfig": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^12.1.4",
+    "@rollup/plugin-terser": "catalog:dev",
+    "@rollup/plugin-typescript": "catalog:dev",
     "@types/node": "catalog:dev",
     "rollup": "catalog:dev",
     "typescript": "catalog:dev"

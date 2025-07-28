@@ -1,10 +1,10 @@
 {
   "name": "@internal/eslint-config",
-  "private": true,
-  "version": "0.3.0",
   "type": "module",
+  "version": "0.3.0",
+  "private": true,
   "exports": {
-    "./base": "./base.js"
+    "./base": "./base.ts"
   },
   "scripts": {
     "clean": "git clean -xdf .cache .turbo node_modules",
@@ -16,14 +16,14 @@
   },
   "dependencies": {
     "@pixpilot/dev-config": "catalog:dev",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jest": "^29.0.1",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "eslint-plugin-turbo": "^2.5.4",
-    "typescript-eslint": "^8.38.0"
+    "eslint-config-prettier": "catalog:dev",
+    "eslint-plugin-jest": "catalog:dev",
+    "eslint-plugin-jsx-a11y": "catalog:dev",
+    "eslint-plugin-react": "catalog:dev",
+    "eslint-plugin-react-hooks": "catalog:dev",
+    "eslint-plugin-react-refresh": "catalog:dev",
+    "eslint-plugin-turbo": "catalog:dev",
+    "typescript-eslint": "catalog:dev"
   },
   "devDependencies": {
     "@internal/prettier-config": "workspace:*",
