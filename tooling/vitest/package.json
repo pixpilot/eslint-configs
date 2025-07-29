@@ -13,9 +13,11 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "devDependencies": {
+    "@internal/eslint-config": "workspace:*",
     "@internal/prettier-config": "workspace:*",
     "@internal/tsconfig": "workspace:*",
     "@vitest/coverage-v8": "catalog:dev",
+    "eslint": "catalog:eslint",
     "vitest": "catalog:dev"
   },
   "prettier": "@internal/prettier-config"

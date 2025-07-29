@@ -19,6 +19,7 @@
   "devDependencies": {
     "@internal/tsconfig": "workspace:*",
     "@types/node": "catalog:dev",
+    "eslint": "catalog:eslint",
     "typescript": "catalog:dev"
   },
   "prettier": "@internal/prettier-config"

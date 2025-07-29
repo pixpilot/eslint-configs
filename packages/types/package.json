@@ -1,27 +1,21 @@
 {
-  "name": "@pixpilot/react-eslint-config",
+  "name": "@internal/types",
   "type": "module",
   "version": "0.0.0",
+  "private": true,
   "packageManager": "pnpm@10.12.2",
-  "author": "pixpilot",
+  "author": "m.doaie",
   "license": "MIT",
   "keywords": [],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "types": "./src/index.ts"
     }
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.tss",
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "test": "vitest run",
     "prepublishOnly": "pnpm run clean && pnpm run build",
@@ -34,22 +28,11 @@
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
-  "dependencies": {
-    "@eslint-react/eslint-plugin": "catalog:eslint",
-    "@fastify/deepmerge": "catalog:prod",
-    "@pixpilot/eslint-config": "catalog:eslint",
-    "eslint-plugin-jsx-a11y": "catalog:eslint",
-    "eslint-plugin-react": "catalog:eslint",
-    "eslint-plugin-react-hooks": "catalog:eslint",
-    "eslint-plugin-react-refresh": "catalog:eslint"
-  },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
     "@internal/prettier-config": "workspace:*",
     "@internal/rollup-config": "workspace:*",
-    "@internal/semantic-release": "workspace:*",
     "@internal/tsconfig": "workspace:*",
-    "@internal/types": "workspace:*",
     "@internal/vitest-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
     "@types/node": "catalog:dev",

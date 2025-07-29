@@ -1,3 +1,11 @@
-import baseConfig from '../eslint/base';
+import config from '@pixpilot/eslint-config';
 
-export default baseConfig;
+const eslintConfig: any = config({
+  pnpm: true,
+  stylistic: {
+    semi: true,
+    quotes: 'single',
+  },
+});
+
+export default eslintConfig;

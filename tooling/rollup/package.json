@@ -19,6 +19,7 @@
     "@rollup/plugin-terser": "catalog:dev",
     "@rollup/plugin-typescript": "catalog:dev",
     "@types/node": "catalog:dev",
+    "eslint": "catalog:eslint",
     "rollup": "catalog:dev",
     "typescript": "catalog:dev"
   },
