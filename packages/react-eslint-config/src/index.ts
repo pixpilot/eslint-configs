@@ -7,12 +7,19 @@ const merge = deepmerge();
 const configFunc: ConfigFuncType = (op, ...rest) => {
   const options: ConfigOptions = {
     react: true,
+    type: 'app',
+    jsonc: true,
+    yaml: true,
+    gitignore: true,
+    unicorn: true,
+    imports: true,
+    markdown: true,
+    stylistic: true,
+    regexp: true,
+    // pnpm: true,
     jsx: {
       a11y: {
-        overrides: {
-          'jsx-a11y/alt-text': 'error',
-          'jsx-a11y/no-static-element-interactions': 'warn',
-        },
+        overrides: {},
       },
     },
   };
