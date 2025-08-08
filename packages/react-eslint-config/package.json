@@ -49,7 +49,6 @@
     "@internal/eslint-config": "workspace:*",
     "@internal/prettier-config": "workspace:*",
     "@internal/rollup-config": "workspace:*",
-    "@internal/semantic-release": "workspace:*",
     "@internal/tsconfig": "workspace:*",
     "@internal/types": "workspace:*",
     "@internal/utils": "workspace:*",

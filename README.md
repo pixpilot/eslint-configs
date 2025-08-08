@@ -32,28 +32,23 @@ A modern TypeScript monorepo template for npm packages, managed with pnpm and Tu
 
 - `packages/utils` – Example utility package
 
-### 🏷️ Package Naming Convention
+## 🚢 Releases
 
-In this template, we use `@pixpilot` as a placeholder for package names. As a user, you might want to replace it with your own organization or project name.
+### 🤖 Automated Release (Recommended)
 
-## 🚢 Releasing Packages (Independent Versioning)
+This monorepo uses the [Changeset Autopilot GitHub Action](https://github.com/pixpilot/changesets-autopilot) for fully automated, dependency-aware versioning and publishing. It:
 
-This monorepo uses [semantic-release-monorepo](https://github.com/pmowrer/semantic-release-monorepo) for fully automated, independent versioning and publishing of each package.
+- Detects conventional commits and generates changesets automatically
+- Handles branch-based release channels (main, next, beta, etc.)
+- Versions and publishes only changed packages to npm
+- Manages pre-releases and dist-tags
+- Runs entirely in CI for maximum reliability
 
-### 📝 How to Release
+**How it works:**
 
-1. Ensure you have an `NPM_TOKEN` with publish rights set in your environment (for CI/CD, set as a secret).
-2. Run the following command from the root:
-   ```sh
-   pnpm release
-   ```
-   This will run semantic-release in each workspace package, versioning and publishing only those with relevant changes.
-
-- Each package is versioned independently.
-- Git tags are created in the format `<package-name>-<version>`.
-- See `release.config.js` for configuration details.
-
-For more, see the [semantic-release-monorepo docs](https://github.com/pmowrer/semantic-release-monorepo).
+- On every push to a release branch, the action analyzes commits, generates changesets, versions packages, and publishes to npm.
+- No manual steps are needed—just follow the conventional commit format and push to the correct branch.
+- See the [Changeset Autopilot documentation](https://github.com/pixpilot/changesets-autopilot) for setup and configuration details.
 
 ## 🤝 Contributing
 
