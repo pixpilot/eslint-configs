@@ -1,7 +1,11 @@
 {
   "name": "eslint-configs",
   "private": true,
-  "packageManager": "pnpm@10.11.1",
+  "packageManager": "pnpm@10.14.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pixpilot/eslint-configs.git"
+  },
   "engines": {
     "node": ">=22.14.0",
     "pnpm": ">=9.6.0"
@@ -16,6 +20,7 @@
     "lint": "turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
     "lint:fix": "turbo run lint --continue -- --fix --cache --cache-location .cache/.eslintcache",
     "lint:ws": "pnpm dlx sherif@latest",
+    "fix:all": "pnpm format:fix && pnpm lint:fix && pnpm typecheck",
     "postinstall": "pnpm lint:ws",
     "test": "turbo run test",
     "test:ui": "vitest --ui",
@@ -26,6 +31,7 @@
     "clean:workspaces": "turbo run clean",
     "clean:workspaces:install": "pnpm clean:workspaces && pnpm install",
     "turbo:gen:init": "pnpm turbo gen init",
+    "deps:update:recursive": "npx taze -r",
     "release": "pnpm -r --filter ./packages/* --workspace-concurrency=1 exec -- semantic-release -e semantic-release-monorepo -e @pixpilot/semantic-release-require-config"
   },
   "devDependencies": {

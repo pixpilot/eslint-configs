@@ -1,7 +1,7 @@
 import path from 'node:path';
 import process from 'node:process';
 
-import terser from '@rollup/plugin-terser';
+// import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 
 // For all TypeScript files in 'src', excluding declaration files.
@@ -46,7 +46,7 @@ const config = {
        */
       incremental: false,
     }),
-    terser(),
+    // terser(),
   ],
 };
 

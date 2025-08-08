@@ -1,0 +1,10 @@
+{
+  "extends": "@internal/tsconfig/base.json",
+  // "compilerOptions": {
+  //   "baseUrl": "../..",
+  //   "paths": {
+  //     "@internal/utils": ["packages/utils/src/index.ts"]
+  //   }
+  // },
+  "include": ["src", "tests", "scripts", "rollup.config.js"]
+}
