@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git/eslint-test-utils.git"
+    "url": "https://github.com/pixpilot/eslint-test-utils.git"
   },
   "keywords": [],
   "exports": "./src/index.ts",
