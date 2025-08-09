@@ -1,10 +1,14 @@
 {
-  "name": "@pixpilot/react-eslint-config",
+  "name": "@pixpilot/eslint-config-next",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.14.0",
-  "author": "pixpilot",
+  "packageManager": "pnpm@10.12.2",
+  "author": "m.doaie <m.doaie@hotmail.com> (https://github.com/ccpu)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git/eslint-config-next.git"
+  },
   "keywords": [],
   "exports": "./src/index.ts",
   "files": [
@@ -12,16 +16,16 @@
   ],
   "publishConfig": {
     "access": "public",
-    "main": "./lib/index.js",
-    "types": "./lib/index.d.ts",
     "exports": {
       ".": {
         "types": "./dist/index.d.ts",
         "import": "./dist/index.js",
         "require": "./dist/index.cjs"
-      },
-      "./package.json": "./package.json"
-    }
+      }
+    },
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts"
   },
   "scripts": {
     "prepublishOnly": "pnpm run clean && pnpm run build",
@@ -31,19 +35,9 @@
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "test:run": "vitest run",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
-  },
-  "dependencies": {
-    "@eslint-react/eslint-plugin": "catalog:eslint",
-    "@fastify/deepmerge": "catalog:prod",
-    "@pixpilot/eslint-config": "catalog:eslint",
-    "eslint-plugin-jsx-a11y": "catalog:eslint",
-    "eslint-plugin-react": "catalog:eslint",
-    "eslint-plugin-react-hooks": "catalog:eslint",
-    "eslint-plugin-react-refresh": "catalog:eslint"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
@@ -52,9 +46,7 @@
     "@internal/tsconfig": "workspace:*",
     "@internal/vitest-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
-    "@pixpilot/eslint-config-base": "workspace:*",
     "@types/node": "catalog:dev",
-    "eslint": "catalog:eslint",
     "rollup": "catalog:dev"
   }
 }

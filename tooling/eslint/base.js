@@ -1,5 +1,5 @@
-import config from '@pixpilot/eslint-config';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import config from '@pixpilot/eslint-config-base';
+
 import turboPlugin from 'eslint-plugin-turbo';
 
 /** @type {any} */
@@ -22,12 +22,6 @@ const baseConfig = config(
       turbo: turboPlugin,
     },
   },
-).append([
-  {
-    // This enables Prettier compatibility for flat config
-    // See: https://github.com/eslint/eslint-config-prettier#flat-config
-    ...eslintConfigPrettier,
-  },
-]);
+);
 
 export default baseConfig;

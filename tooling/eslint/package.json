@@ -17,7 +17,7 @@
   "dependencies": {
     "@internal/tsconfig": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
-    "eslint-config-prettier": "catalog:dev",
+    "@pixpilot/eslint-config-base": "workspace:*",
     "eslint-plugin-jest": "catalog:eslint",
     "eslint-plugin-turbo": "catalog:eslint",
     "typescript-eslint": "catalog:eslint"

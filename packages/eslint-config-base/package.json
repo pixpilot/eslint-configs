@@ -2,8 +2,7 @@
   "name": "@pixpilot/eslint-config-base",
   "type": "module",
   "version": "0.0.0",
-  "private": true,
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.12.2",
   "author": "m.doaie <m.doaie@hotmail.com> (https://github.com/ccpu)",
   "license": "MIT",
   "repository": {
@@ -11,20 +10,23 @@
     "url": "git/eslint-config-base.git"
   },
   "keywords": [],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "workspace-development-source": "./src/index.ts"
-    }
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "exports": "./src/index.ts",
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs"
+      }
+    },
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
   "scripts": {
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "clean": "rimraf dist",
@@ -38,16 +40,17 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@internal/utils": "workspace:*"
+    "@fastify/deepmerge": "catalog:prod",
+    "eslint-config-prettier": "catalog:dev"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
     "@internal/prettier-config": "workspace:*",
     "@internal/rollup-config": "workspace:*",
     "@internal/tsconfig": "workspace:*",
-    "@internal/types": "workspace:*",
     "@internal/vitest-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
+    "@pixpilot/eslint-test-utils": "workspace:*",
     "@types/node": "catalog:dev",
     "rollup": "catalog:dev"
   }

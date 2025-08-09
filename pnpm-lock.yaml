@@ -169,9 +169,12 @@ importers:
 
   packages/eslint-config-base:
     dependencies:
-      '@internal/utils':
-        specifier: workspace:*
-        version: link:../utils
+      '@fastify/deepmerge':
+        specifier: catalog:prod
+        version: 3.1.0
+      eslint-config-prettier:
+        specifier: catalog:dev
+        version: 10.1.8(eslint@9.32.0(jiti@2.5.1))
     devDependencies:
       '@internal/eslint-config':
         specifier: workspace:*
@@ -185,9 +188,90 @@ importers:
       '@internal/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@internal/types':
+      '@internal/vitest-config':
         specifier: workspace:*
-        version: link:../types
+        version: link:../../tooling/vitest
+      '@pixpilot/dev-config':
+        specifier: catalog:dev
+        version: 2.1.0(@typescript-eslint/eslint-plugin@8.39.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(jest@30.0.4(@types/node@22.17.0)(ts-node@10.9.2(@types/node@22.17.0)(typescript@5.9.2)))(prettier@3.6.2)(typescript@5.9.2)
+      '@pixpilot/eslint-test-utils':
+        specifier: workspace:*
+        version: link:../eslint-test-utils
+      '@types/node':
+        specifier: catalog:dev
+        version: 22.17.0
+      rollup:
+        specifier: catalog:dev
+        version: 4.46.2
+
+  packages/eslint-config-next:
+    devDependencies:
+      '@internal/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint
+      '@internal/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@internal/rollup-config':
+        specifier: workspace:*
+        version: link:../../tooling/rollup
+      '@internal/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      '@internal/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest
+      '@pixpilot/dev-config':
+        specifier: catalog:dev
+        version: 2.1.0(@typescript-eslint/eslint-plugin@8.39.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(jest@30.0.4(@types/node@22.17.0)(ts-node@10.9.2(@types/node@22.17.0)(typescript@5.9.2)))(prettier@3.6.2)(typescript@5.9.2)
+      '@types/node':
+        specifier: catalog:dev
+        version: 22.17.0
+      rollup:
+        specifier: catalog:dev
+        version: 4.46.2
+
+  packages/eslint-config-react:
+    devDependencies:
+      '@internal/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint
+      '@internal/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@internal/rollup-config':
+        specifier: workspace:*
+        version: link:../../tooling/rollup
+      '@internal/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      '@internal/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest
+      '@pixpilot/dev-config':
+        specifier: catalog:dev
+        version: 2.1.0(@typescript-eslint/eslint-plugin@8.39.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(jest@30.0.4(@types/node@22.17.0)(ts-node@10.9.2(@types/node@22.17.0)(typescript@5.9.2)))(prettier@3.6.2)(typescript@5.9.2)
+      '@types/node':
+        specifier: catalog:dev
+        version: 22.17.0
+      rollup:
+        specifier: catalog:dev
+        version: 4.46.2
+
+  packages/eslint-test-utils:
+    devDependencies:
+      '@internal/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint
+      '@internal/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@internal/rollup-config':
+        specifier: workspace:*
+        version: link:../../tooling/rollup
+      '@internal/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
       '@internal/vitest-config':
         specifier: workspace:*
         version: link:../../tooling/vitest
@@ -237,85 +321,21 @@ importers:
       '@internal/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
-      '@internal/types':
-        specifier: workspace:*
-        version: link:../types
-      '@internal/utils':
-        specifier: workspace:*
-        version: link:../utils
       '@internal/vitest-config':
         specifier: workspace:*
         version: link:../../tooling/vitest
       '@pixpilot/dev-config':
         specifier: catalog:dev
         version: 2.1.0(@typescript-eslint/eslint-plugin@8.39.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(jest@30.0.4(@types/node@22.17.0)(ts-node@10.9.2(@types/node@22.17.0)(typescript@5.9.2)))(prettier@3.6.2)(typescript@5.9.2)
+      '@pixpilot/eslint-config-base':
+        specifier: workspace:*
+        version: link:../eslint-config-base
       '@types/node':
         specifier: catalog:dev
         version: 22.17.0
       eslint:
         specifier: catalog:eslint
         version: 9.32.0(jiti@2.5.1)
-      rollup:
-        specifier: catalog:dev
-        version: 4.46.2
-
-  packages/types:
-    devDependencies:
-      '@internal/eslint-config':
-        specifier: workspace:*
-        version: link:../../tooling/eslint
-      '@internal/prettier-config':
-        specifier: workspace:*
-        version: link:../../tooling/prettier
-      '@internal/rollup-config':
-        specifier: workspace:*
-        version: link:../../tooling/rollup
-      '@internal/tsconfig':
-        specifier: workspace:*
-        version: link:../../tooling/typescript
-      '@internal/vitest-config':
-        specifier: workspace:*
-        version: link:../../tooling/vitest
-      '@pixpilot/dev-config':
-        specifier: catalog:dev
-        version: 2.1.0(@typescript-eslint/eslint-plugin@8.39.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(jest@30.0.4(@types/node@22.17.0)(ts-node@10.9.2(@types/node@22.17.0)(typescript@5.9.2)))(prettier@3.6.2)(typescript@5.9.2)
-      '@types/node':
-        specifier: catalog:dev
-        version: 22.17.0
-      eslint:
-        specifier: catalog:eslint
-        version: 9.32.0(jiti@2.5.1)
-      rollup:
-        specifier: catalog:dev
-        version: 4.46.2
-
-  packages/utils:
-    dependencies:
-      '@fastify/deepmerge':
-        specifier: catalog:prod
-        version: 3.1.0
-    devDependencies:
-      '@internal/eslint-config':
-        specifier: workspace:*
-        version: link:../../tooling/eslint
-      '@internal/prettier-config':
-        specifier: workspace:*
-        version: link:../../tooling/prettier
-      '@internal/rollup-config':
-        specifier: workspace:*
-        version: link:../../tooling/rollup
-      '@internal/tsconfig':
-        specifier: workspace:*
-        version: link:../../tooling/typescript
-      '@internal/vitest-config':
-        specifier: workspace:*
-        version: link:../../tooling/vitest
-      '@pixpilot/dev-config':
-        specifier: catalog:dev
-        version: 2.1.0(@typescript-eslint/eslint-plugin@8.39.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(jest@30.0.4(@types/node@22.17.0)(ts-node@10.9.2(@types/node@22.17.0)(typescript@5.9.2)))(prettier@3.6.2)(typescript@5.9.2)
-      '@types/node':
-        specifier: catalog:dev
-        version: 22.17.0
       rollup:
         specifier: catalog:dev
         version: 4.46.2
@@ -328,6 +348,9 @@ importers:
       '@pixpilot/dev-config':
         specifier: catalog:dev
         version: 2.1.0(@typescript-eslint/eslint-plugin@8.39.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(jest@30.0.4(@types/node@24.2.0)(ts-node@10.9.2(@types/node@24.2.0)(typescript@5.9.2)))(prettier@3.6.2)(typescript@5.9.2)
+      '@pixpilot/eslint-config-base':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config-base
       eslint-config-prettier:
         specifier: catalog:dev
         version: 10.1.8(eslint@9.32.0(jiti@2.5.1))
@@ -384,36 +407,9 @@ importers:
       '@pixpilot/dev-config':
         specifier: catalog:dev
         version: 2.1.0(@typescript-eslint/eslint-plugin@8.39.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(jest@30.0.4(@types/node@22.17.0)(ts-node@10.9.2(@types/node@22.17.0)(typescript@5.9.2)))(prettier@3.6.2)(typescript@5.9.2)
-      '@rollup/plugin-terser':
-        specifier: catalog:dev
-        version: 0.4.4(rollup@4.46.2)
-      '@rollup/plugin-typescript':
-        specifier: catalog:dev
-        version: 12.1.4(rollup@4.46.2)(tslib@2.8.1)(typescript@5.9.2)
-      '@types/node':
-        specifier: catalog:dev
-        version: 22.17.0
-      eslint:
-        specifier: catalog:eslint
-        version: 9.32.0(jiti@2.5.1)
-      rollup:
-        specifier: catalog:dev
-        version: 4.46.2
-      typescript:
-        specifier: catalog:dev
-        version: 5.9.2
-
-  tooling/semantic-release:
-    devDependencies:
-      '@internal/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint
-      '@internal/tsconfig':
-        specifier: workspace:*
-        version: link:../typescript
-      '@pixpilot/dev-config':
-        specifier: catalog:dev
-        version: 2.1.0(@typescript-eslint/eslint-plugin@8.39.0(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(@typescript-eslint/parser@8.39.0(eslint@9.32.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.32.0(jiti@2.5.1))(jest@30.0.4(@types/node@22.17.0)(ts-node@10.9.2(@types/node@22.17.0)(typescript@5.9.2)))(prettier@3.6.2)(typescript@5.9.2)
+      '@rollup/plugin-node-resolve':
+        specifier: ^16.0.1
+        version: 16.0.1(rollup@4.46.2)
       '@rollup/plugin-terser':
         specifier: catalog:dev
         version: 0.4.4(rollup@4.46.2)
@@ -1314,6 +1310,15 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
+  '@rollup/plugin-node-resolve@16.0.1':
+    resolution: {integrity: sha512-tk5YCxJWIG81umIvNkSod2qK5KyQW19qcBF/B78n1bjtOON6gzKoVeSzAE8yHCZEDmqkHKkxplExA8KzdJLJpA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.78.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+
   '@rollup/plugin-terser@0.4.4':
     resolution: {integrity: sha512-XHeJC5Bgvs8LfukDwWZp7yeqin6ns8RTl2B9avbejt6tZqsqvVoWI7ZTQrcNsfKEDWBTnTxM8nMDkO2IFFbd0A==}
     engines: {node: '>=14.0.0'}
@@ -1558,6 +1563,9 @@ packages:
 
   '@types/node@24.2.0':
     resolution: {integrity: sha512-3xyG3pMCq3oYCNg7/ZP+E1ooTaGB4cG8JWRsqqOYQdbWNY4zbaV0Ennrd7stjiJEFZCaybcIgpTjJWHRfBSIDw==}
+
+  '@types/resolve@1.20.2':
+    resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
@@ -3325,6 +3333,9 @@ packages:
   is-map@2.0.3:
     resolution: {integrity: sha512-1Qed0/Hr2m+YqxnM09CjA2d/i6YZNfF6R2oRAOj36eUdS6qIV/huPJNSEpKbupewFs+ZsJlxsjjPbc0/afW6Lw==}
     engines: {node: '>= 0.4'}
+
+  is-module@1.0.0:
+    resolution: {integrity: sha512-51ypPSPCoTEIN9dy5Oy+h4pShgJmPCygKfyRCISBI+JoWT/2oJvK8QPxmwv7b/p239jXrm9M1mlQbyKJ5A152g==}
 
   is-negative-zero@2.0.3:
     resolution: {integrity: sha512-5KoIu2Ngpyek75jXodFvnafB6DJgr3u8uuK0LEZJjrU19DrMD3EVERaR8sjz8CCGgpZvxPl9SuE1GMVPFHx1mw==}
@@ -6463,6 +6474,16 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
+  '@rollup/plugin-node-resolve@16.0.1(rollup@4.46.2)':
+    dependencies:
+      '@rollup/pluginutils': 5.2.0(rollup@4.46.2)
+      '@types/resolve': 1.20.2
+      deepmerge: 4.3.1
+      is-module: 1.0.0
+      resolve: 1.22.10
+    optionalDependencies:
+      rollup: 4.46.2
+
   '@rollup/plugin-terser@0.4.4(rollup@4.46.2)':
     dependencies:
       serialize-javascript: 6.0.2
@@ -6653,7 +6674,7 @@ snapshots:
 
   '@types/conventional-commits-parser@5.0.1':
     dependencies:
-      '@types/node': 22.17.0
+      '@types/node': 24.2.0
 
   '@types/debug@4.1.12':
     dependencies:
@@ -6666,7 +6687,7 @@ snapshots:
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 6.0.0
-      '@types/node': 22.17.0
+      '@types/node': 24.2.0
 
   '@types/inquirer@6.5.0':
     dependencies:
@@ -6711,14 +6732,15 @@ snapshots:
   '@types/node@24.2.0':
     dependencies:
       undici-types: 7.10.0
-    optional: true
+
+  '@types/resolve@1.20.2': {}
 
   '@types/stack-utils@2.0.3':
     optional: true
 
   '@types/through@0.0.33':
     dependencies:
-      '@types/node': 22.17.0
+      '@types/node': 24.2.0
 
   '@types/tinycolor2@1.4.6': {}
 
@@ -6904,7 +6926,7 @@ snapshots:
       std-env: 3.9.0
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@22.17.0)(@vitest/ui@3.2.4)(jiti@2.5.1)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.1)
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.2.0)(@vitest/ui@3.2.4)(jiti@2.5.1)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -6933,6 +6955,14 @@ snapshots:
       magic-string: 0.30.17
     optionalDependencies:
       vite: 7.1.1(@types/node@22.17.0)(jiti@2.5.1)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.1)
+
+  '@vitest/mocker@3.2.4(vite@7.1.1(@types/node@24.2.0)(jiti@2.5.1)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.1))':
+    dependencies:
+      '@vitest/spy': 3.2.4
+      estree-walker: 3.0.3
+      magic-string: 0.30.17
+    optionalDependencies:
+      vite: 7.1.1(@types/node@24.2.0)(jiti@2.5.1)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.1)
 
   '@vitest/pretty-format@3.2.4':
     dependencies:
@@ -7539,8 +7569,7 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  deepmerge@4.3.1:
-    optional: true
+  deepmerge@4.3.1: {}
 
   defaults@1.0.4:
     dependencies:
@@ -8863,6 +8892,8 @@ snapshots:
       lower-case: 1.1.4
 
   is-map@2.0.3: {}
+
+  is-module@1.0.0: {}
 
   is-negative-zero@2.0.3: {}
 
@@ -11187,8 +11218,7 @@ snapshots:
 
   undici-types@6.21.0: {}
 
-  undici-types@7.10.0:
-    optional: true
+  undici-types@7.10.0: {}
 
   unicorn-magic@0.1.0: {}
 
@@ -11395,7 +11425,7 @@ snapshots:
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
-      '@vitest/mocker': 3.2.4(vite@7.1.1(@types/node@22.17.0)(jiti@2.5.1)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.1))
+      '@vitest/mocker': 3.2.4(vite@7.1.1(@types/node@24.2.0)(jiti@2.5.1)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.1))
       '@vitest/pretty-format': 3.2.4
       '@vitest/runner': 3.2.4
       '@vitest/snapshot': 3.2.4

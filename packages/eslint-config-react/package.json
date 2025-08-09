@@ -1,41 +1,43 @@
 {
-  "name": "@internal/utils",
+  "name": "@pixpilot/eslint-config-react",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@10.14.0",
-  "author": "pixpilot",
+  "packageManager": "pnpm@10.12.2",
+  "author": "m.doaie <m.doaie@hotmail.com> (https://github.com/ccpu)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git/eslint-config-react.git"
+  },
   "keywords": [],
   "exports": "./src/index.ts",
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
-    "main": "./lib/index.js",
-    "types": "./lib/index.d.ts",
+    "access": "public",
     "exports": {
       ".": {
         "types": "./dist/index.d.ts",
         "import": "./dist/index.js",
         "require": "./dist/index.cjs"
-      },
-      "./package.json": "./package.json"
-    }
+      }
+    },
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "test": "vitest run",
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "clean": "rimraf dist",
     "build": "pnpm run clean && rollup -c",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "test:run": "vitest run",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
-  },
-  "dependencies": {
-    "@fastify/deepmerge": "catalog:prod"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",

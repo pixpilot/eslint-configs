@@ -1,7 +1,7 @@
-import type { ConfigFuncType, ConfigOptions } from '@internal/types';
+import type { ConfigFuncType, ConfigOptions } from '@pixpilot/eslint-config-base';
 
-import { deepMerge } from '@internal/utils';
 import config from '@pixpilot/eslint-config';
+import { deepMerge } from '@pixpilot/eslint-config-base';
 
 const configFunc: ConfigFuncType = (op, ...rest) => {
   const options: ConfigOptions = {
