@@ -1,17 +1,14 @@
-# pnpm-turbo-monorepo-template
+# Pixpilot ESLint Configs Monorepo
 
-> ⚠️ **Opinionated Template:**
-> This monorepo template is designed for our internal standards and workflows. Feel free to use, adapt, and extend it for your own projects.
-
-A modern TypeScript monorepo template for npm packages, managed with pnpm and TurboRepo.
+This monorepo contains shared ESLint configurations and utilities used across Pixpilot projects. It is designed to provide consistent, high-quality linting for JavaScript, TypeScript, React, and Next.js codebases at Pixpilot. While these configs are tailored for our internal standards, you are welcome to use, adapt, and extend them for your own projects!
 
 ## ✨ Features
 
-- Monorepo structure with workspaces
-- TypeScript support
-- Linting and formatting with ESLint and Prettier
-- Build tooling with Rollup
-- Easy dependency management with pnpm
+- Multiple shareable ESLint configs for different stacks (base, React, Next.js)
+- TypeScript and JavaScript support
+- Utilities for testing custom ESLint rules
+- Consistent linting and formatting across all Pixpilot projects
+- Managed with pnpm and TurboRepo for fast, reliable monorepo workflows
 
 ## 🚀 Getting Started
 
@@ -30,13 +27,14 @@ A modern TypeScript monorepo template for npm packages, managed with pnpm and Tu
 
 ## 📦 Packages
 
-- `packages/utils` – Example utility package
+- [eslint-config-base](./packages/eslint-config-base) – Base ESLint config for JavaScript/TypeScript projects
+- [eslint-config-next](./packages/eslint-config-next) – ESLint config for Next.js projects
+- [eslint-config-react](./packages/eslint-config-react) – ESLint config for React projects
+- [eslint-test-utils](./packages/eslint-test-utils) – Utilities for testing custom ESLint rules
 
 ## 🚢 Releases
 
-### 🤖 Automated Release (Recommended)
-
-This monorepo uses the [Changeset Autopilot GitHub Action](https://github.com/pixpilot/changesets-autopilot) for fully automated, dependency-aware versioning and publishing. It:
+This monorepo uses the [Changeset Autopilot GitHub Action](https://github.com/pixpilot/changesets-autopilot) for automated, dependency-aware versioning and publishing. It:
 
 - Detects conventional commits and generates changesets automatically
 - Handles branch-based release channels (main, next, beta, etc.)
