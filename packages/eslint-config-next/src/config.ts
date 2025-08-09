@@ -3,13 +3,8 @@ import config, { deepMerge } from '@pixpilot/eslint-config-react';
 
 const configFunc: ConfigFuncType = (op, ...rest) => {
   const options: ConfigOptions = {
-    react: true,
     type: 'app',
-    jsx: {
-      a11y: {
-        overrides: {},
-      },
-    },
+    nextjs: true,
   };
 
   return config(deepMerge(options, op), ...rest);

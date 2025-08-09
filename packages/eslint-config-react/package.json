@@ -40,7 +40,11 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@pixpilot/eslint-config-base": "workspace:*"
+    "@eslint-react/eslint-plugin": "^1.52.3",
+    "@pixpilot/eslint-config-base": "workspace:*",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
@@ -49,6 +53,7 @@
     "@internal/tsconfig": "workspace:*",
     "@internal/vitest-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
+    "@pixpilot/eslint-test-utils": "workspace:*",
     "@types/node": "catalog:dev",
     "rollup": "catalog:dev"
   }

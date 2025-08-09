@@ -40,6 +40,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
+    "@next/eslint-plugin-next": "^15.4.6",
     "@pixpilot/eslint-config-react": "workspace:*"
   },
   "devDependencies": {
@@ -49,6 +50,7 @@
     "@internal/tsconfig": "workspace:*",
     "@internal/vitest-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
+    "@pixpilot/eslint-test-utils": "workspace:*",
     "@types/node": "catalog:dev",
     "rollup": "catalog:dev"
   }
