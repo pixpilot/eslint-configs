@@ -3,6 +3,6 @@
  * from searching for an ESLint config in the root folder.
  */
 
-import baseConfig from './tooling/eslint/base.js';
+import baseConfig from './tooling/eslint/base';
 
 export default baseConfig;

@@ -4,7 +4,7 @@
   "version": "0.3.0",
   "private": true,
   "exports": {
-    "./base": "./base.js"
+    "./base": "./base.ts"
   },
   "scripts": {
     "clean": "git clean -xdf .cache .turbo node_modules",
@@ -17,7 +17,6 @@
   "dependencies": {
     "@internal/tsconfig": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
-    "@pixpilot/eslint-config-base": "workspace:*",
     "eslint-plugin-jest": "catalog:eslint",
     "eslint-plugin-turbo": "catalog:eslint",
     "typescript-eslint": "catalog:eslint"

@@ -1,3 +1,3 @@
-import baseConfigPromise from '../eslint/base.js';
+import baseConfigPromise from '../eslint/base';
 
 export default baseConfigPromise;

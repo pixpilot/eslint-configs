@@ -1,9 +1,8 @@
-import config from '@pixpilot/eslint-config-base';
-
 import turboPlugin from 'eslint-plugin-turbo';
 
-/** @type {any} */
-const baseConfig = config(
+import config from '../../packages/eslint-config-base/src/config';
+
+const baseConfig: ReturnType<typeof config> = config(
   {
     pnpm: true,
     stylistic: {

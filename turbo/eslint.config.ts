@@ -1,3 +1,3 @@
-import config from '../tooling/eslint/base.js';
+import config from '../tooling/eslint/base';
 
 export default config;
