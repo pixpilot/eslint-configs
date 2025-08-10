@@ -35,9 +35,13 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
     configurations.append([
       {
         // This enables Prettier compatibility for flat config
-        // See: https://github.com/eslint/eslint-config-prettier#flat-config
+        // See: https://github.com/prettier/eslint-config-prettier/blob/main/index.js
         ...eslintConfigPrettier,
-      },
+        rules: {
+          ...eslintConfigPrettier.rules,
+          'antfu/if-newline': 'off',
+        },
+      } as any,
     ]);
   }
 

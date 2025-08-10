@@ -68,8 +68,9 @@ function setOverridesRecursively(obj: any, overridesMap: Record<string, any>): v
  * - All other properties are deep merged using the standard @fastify/deepmerge behavior
  */
 function mergeOptions(target: any, ...sources: any[]): any {
-  if (sources.length === 0) 
-return target;
+  if (sources.length === 0) {
+    return target;
+  }
 
   // First, do the normal deep merge for everything
   const normalMergeResult = baseMerge(target, ...sources);
