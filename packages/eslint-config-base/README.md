@@ -4,7 +4,7 @@ This is the base ESLint config for JavaScript/TypeScript projects at Pixpilot. W
 
 ## Usage
 
-Add to your `eslint.config.js`:
+Add to your `eslint.config.js` or `eslint.config.ts`:
 
 ```js
 import config from '@pixpilot/eslint-config-base';

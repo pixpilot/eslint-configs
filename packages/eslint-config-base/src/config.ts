@@ -2,7 +2,8 @@ import type { ConfigFuncType, ConfigOptions } from './types';
 
 import config from '@pixpilot/eslint-config';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import { deepMerge } from './utils';
+import { overrideRules } from './override-rules';
+import { mergeOptions } from './utils';
 
 const configFunc: ConfigFuncType = (op, ...rest) => {
   const options: ConfigOptions = {
@@ -16,9 +17,15 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
     regexp: true,
     autoRenamePlugins: true,
     prettier: true,
+    stylistic: true,
+    rules: {
+      ...overrideRules,
+    },
   };
 
-  const mergedOptions = deepMerge(options, op) as ConfigOptions;
+  // const mergedOptions = { ...options, ...op } as ConfigOptions;
+
+  const mergedOptions = mergeOptions(options, op || {}) as ConfigOptions;
 
   const { prettier, ...eslintConfig } = mergedOptions;
 

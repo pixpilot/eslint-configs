@@ -46,7 +46,7 @@ describe('configFunc (integration tests for all rule categories)', () => {
    * - jsonc: JSON with comments linting
    * - yaml: YAML file linting
    * - markdown: Markdown file linting (within code blocks)
-   * - gitignore: Gitignore file linting
+   * - stylistic: Code formatting and style rules
    */
 
   // Test fixtures for different rule categories
@@ -55,33 +55,22 @@ describe('configFunc (integration tests for all rule categories)', () => {
       category: 'unicorn',
       code: `const buf = new Buffer('hello');`,
       filePath: 'test.js',
-      expectedRule: 'unicorn/no-new-buffer',
       description: 'should report unicorn rule errors for deprecated Buffer constructor',
-      categoryConfig: {
-        ruleChecker: ['unicorn/'],
-      },
+      shouldFailRuleName: 'unicorn/no-new-buffer',
     },
     {
       category: 'imports',
       code: `import fs from 'fs';\nimport path from 'path';\nconsole.log('unused imports');`,
       filePath: 'test.js',
-      expectedRule: 'unused-imports/no-unused-imports',
       description: 'should report import rule errors for unused imports',
-      categoryConfig: {
-        ruleChecker: (ruleId: string) =>
-          ruleId.includes('import') || ruleId.includes('unused-imports'),
-        ruleMappings: ['import'],
-      },
+      shouldFailRuleName: 'unused-imports/no-unused-imports',
     },
     {
       category: 'regexp',
       code: `const regex = /[a-zA-Z0-9]/; // Could be simplified`,
       filePath: 'test.js',
-      expectedRule: 'regexp/use-ignore-case',
       description: 'should report regexp rule errors for non-optimized regex patterns',
-      categoryConfig: {
-        ruleChecker: ['regexp/'],
-      },
+      shouldFailRuleName: 'regexp/use-ignore-case',
     },
     {
       category: 'jsonc',
@@ -91,60 +80,64 @@ describe('configFunc (integration tests for all rule categories)', () => {
   "name": "duplicate"
 }`,
       filePath: 'test.json',
-      expectedRule: 'jsonc/no-dupe-keys',
       description: 'should report JSONC rule errors for duplicate keys',
-      categoryConfig: {
-        ruleChecker: ['jsonc/'],
-      },
+      shouldFailRuleName: 'jsonc/no-dupe-keys',
     },
     {
       category: 'yaml',
       code: `---
-name: test
-version: 1.0.0
-name: duplicate
-invalid_yaml_syntax: [unclosed`,
+items:
+  -
+  - value`,
       filePath: 'test.yaml',
-      expectedRule: 'yml/no-duplicate-keys',
-      description: 'should report YAML rule errors for duplicate keys and syntax issues',
-      categoryConfig: {
-        ruleChecker: ['yml/', 'yaml/'],
-        isLenient: true,
-        ruleMappings: ['yml'],
-      },
+      description: 'should report YAML rule errors for empty sequence entries',
+      shouldFailRuleName: 'yaml/no-empty-sequence-entry',
     },
     {
       category: 'markdown',
-      code: `# Title
+      code: `# Test Markdown
 
-\`\`\`
-const x = 1;
-console.log('missing language');
-\`\`\`
-
-[Invalid Link](`,
+\`\`\`javascript
+var x = 1;
+console.log('test');
+\`\`\``,
       filePath: 'test.md',
-      expectedRule: 'markdown/fenced-code-language',
+      description: 'should report rule errors in markdown code blocks',
+      shouldFailRuleName: 'no-var',
+    },
+    {
+      category: 'unicorn',
+      code: `async function createTypedConfig() {
+        console.log('hello');
+      }`,
+      filePath: 'test.js',
       description:
-        'should report markdown rule errors for missing language in code blocks',
-      categoryConfig: {
-        ruleChecker: (ruleId: string) =>
-          ruleId.startsWith('@eslint/markdown/') || ruleId.includes('markdown'),
-        isLenient: true,
+        "should report error for async function with no 'await' expression (require-await)",
+      shouldFailRuleName: 'require-await',
+    },
+    {
+      category: 'stylistic',
+      code: `var x = function () { return { y: 1 };}(); // unwrapped IIFE`,
+      filePath: 'test.js',
+      description: 'should report stylistic rule errors for unwrapped IIFE',
+      shouldFailRuleName: 'style/wrap-iife',
+
+      options: {
+        // This test should fail if prettier is enabled
+        // because it disables the style/wrap-iife rule
+        prettier: false,
       },
     },
     {
-      category: 'gitignore',
-      code: `*.log
-*.tmp
-*.log
-# Duplicate pattern above`,
-      filePath: '.gitignore',
-      expectedRule: 'gitignore/no-duplicate-patterns',
-      description: 'should report gitignore rule errors for duplicate patterns',
-      categoryConfig: {
-        ruleChecker: ['gitignore/'],
-        isLenient: true,
+      category: 'stylistic',
+      code: `var x = function () { return { y: 1 };}(); // unwrapped IIFE`,
+      filePath: 'test.js',
+      description:
+        'should not report stylistic rule errors for unwrapped IIFE when prettier is enabled',
+      shouldNotFailRuleName: 'style/wrap-iife', // This rule should NOT be found when prettier is enabled
+
+      options: {
+        prettier: true,
       },
     },
   ];
@@ -157,21 +150,23 @@ console.log('missing language');
     | 'jsonc'
     | 'yaml'
     | 'markdown'
-    | 'gitignore';
+    | 'stylistic';
 
   // Helper function to create a typed config function wrapper
-  async function createTypedConfig(options: Partial<Record<ConfigCategory, boolean>>) {
-    const fullOptions: ConfigOptions = {
-      jsonc: false,
-      yaml: false,
-      gitignore: false,
+  function createTypedConfig(options: { [K in ConfigCategory]?: boolean } = {}) {
+    // Enable all categories by default
+    const categoryOverrides = {
       unicorn: false,
       imports: false,
-      markdown: false,
       regexp: false,
+      jsonc: false,
+      yaml: false,
+      markdown: false,
+      stylistic: false,
       ...options,
     };
-    return configFunc(fullOptions);
+
+    return configFunc(categoryOverrides);
   }
 
   // Use the generic test runner

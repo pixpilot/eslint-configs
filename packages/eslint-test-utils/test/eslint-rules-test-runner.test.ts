@@ -54,11 +54,8 @@ describe('eslintRulesTestRunner', () => {
           category: 'unicorn',
           code: 'const buf = new Buffer("test");',
           filePath: 'test.js',
-          expectedRule: 'unicorn/no-new-buffer',
           description: 'should detect deprecated Buffer usage',
-          categoryConfig: {
-            ruleChecker: ['unicorn/'],
-          },
+          shouldFailRuleName: 'unicorn/no-new-buffer',
         },
       ];
 
@@ -82,32 +79,22 @@ describe('eslintRulesTestRunner', () => {
           category: 'unicorn',
           code: 'const buf = new Buffer("test");',
           filePath: 'test.js',
-          expectedRule: 'unicorn/no-new-buffer',
           description: 'should handle string array rule checker',
-          categoryConfig: {
-            ruleChecker: ['unicorn/', 'another-prefix/'],
-          },
+          shouldFailRuleName: 'unicorn/no-new-buffer',
         },
         {
           category: 'custom',
           code: 'const test = "example";',
           filePath: 'test.js',
-          expectedRule: 'custom/my-rule',
           description: 'should handle function rule checker',
-          categoryConfig: {
-            ruleChecker: (ruleId: string) => ruleId.startsWith('custom/'),
-          },
+          shouldFailRuleName: 'custom/my-rule',
         },
         {
           category: 'imports',
           code: 'import unused from "module";',
           filePath: 'test.js',
-          expectedRule: 'some-import-rule/no-unused',
           description: 'should validate with rule mappings',
-          categoryConfig: {
-            ruleChecker: (ruleId: string) => ruleId.includes('import'),
-            ruleMappings: ['import', 'unused'],
-          },
+          shouldFailRuleName: 'some-import-rule/no-unused',
         },
       ];
 
@@ -175,12 +162,7 @@ describe('eslintRulesTestRunner', () => {
           category: 'lenient',
           code: 'const valid = "code";',
           filePath: 'test.js',
-          expectedRule: 'lenient/some-rule',
           description: 'should handle lenient category with no errors',
-          categoryConfig: {
-            ruleChecker: ['lenient/'],
-            isLenient: true,
-          },
         },
       ];
 
@@ -227,25 +209,22 @@ describe('eslintRulesTestRunner', () => {
           category: 'unicorn',
           code: 'const buf1 = new Buffer("test1");',
           filePath: 'test1.js',
-          expectedRule: 'unicorn/no-new-buffer',
           description: 'first unicorn test',
-          categoryConfig: { ruleChecker: ['unicorn/'] },
+          shouldFailRuleName: 'unicorn/no-new-buffer',
         },
         {
           category: 'unicorn',
           code: 'const buf2 = new Buffer("test2");',
           filePath: 'test2.js',
-          expectedRule: 'unicorn/no-new-buffer',
           description: 'second unicorn test',
-          categoryConfig: { ruleChecker: ['unicorn/'] },
+          shouldFailRuleName: 'unicorn/no-new-buffer',
         },
         {
           category: 'imports',
           code: 'import fs from "fs";',
           filePath: 'test3.js',
-          expectedRule: 'unused-imports/no-unused-imports',
           description: 'imports test',
-          categoryConfig: { ruleChecker: ['unused-imports/'] },
+          shouldFailRuleName: 'unused-imports/no-unused-imports',
         },
       ];
 

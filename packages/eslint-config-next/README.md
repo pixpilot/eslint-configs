@@ -4,7 +4,7 @@ This ESLint configuration provides recommended rules and settings for Next.js pr
 
 ## Usage
 
-Add to your `eslint.config.js`:
+Add to your `eslint.config.js` or `eslint.config.ts`:
 
 ```js
 import config from '@pixpilot/eslint-config-next';

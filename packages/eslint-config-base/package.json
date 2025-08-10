@@ -39,6 +39,9 @@
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
+  "peerDependencies": {
+    "eslint": "^9.10.0"
+  },
   "dependencies": {
     "@fastify/deepmerge": "catalog:prod",
     "eslint-config-prettier": "catalog:dev"

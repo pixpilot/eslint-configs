@@ -8,7 +8,6 @@ This monorepo contains shared ESLint configurations and utilities used across Pi
 - TypeScript and JavaScript support
 - Utilities for testing custom ESLint rules
 - Consistent linting and formatting across all Pixpilot projects
-- Managed with pnpm and TurboRepo for fast, reliable monorepo workflows
 
 ## 🚀 Getting Started
 

@@ -1,5 +1,5 @@
 import type { ConfigFuncType, ConfigOptions } from '@pixpilot/eslint-config-react';
-import config, { deepMerge } from '@pixpilot/eslint-config-react';
+import config, { mergeOptions } from '@pixpilot/eslint-config-react';
 
 const configFunc: ConfigFuncType = (op, ...rest) => {
   const options: ConfigOptions = {
@@ -7,7 +7,7 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
     nextjs: true,
   };
 
-  return config(deepMerge(options, op), ...rest);
+  return config(mergeOptions(options, op), ...rest);
 };
 
 export default configFunc;

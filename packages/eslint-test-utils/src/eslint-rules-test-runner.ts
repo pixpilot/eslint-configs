@@ -1,40 +1,18 @@
 import { ESLint } from 'eslint';
 import { expect, it } from 'vitest';
 
-// Type definitions for the test framework
-export interface RuleChecker {
-  (ruleId: string): boolean;
-}
-
-export interface CategoryConfig {
-  /** Rule checker function or array of rule prefixes to check */
-  ruleChecker: RuleChecker | string[];
-  /** Whether this category should be treated as lenient (allows zero errors) */
-  isLenient?: boolean;
-  /** Category name mappings for rule validation */
-  ruleMappings?: string[];
-}
-
 export interface TestFixture {
   category: string;
   code: string;
   filePath: string;
-  expectedRule: string;
   description: string;
-  /** Category configuration for this specific test */
-  categoryConfig: CategoryConfig;
-}
 
-/**
- * Generic function to create a rule checker from configuration
- */
-function createRuleChecker(config: CategoryConfig): RuleChecker {
-  if (typeof config.ruleChecker === 'function') {
-    return config.ruleChecker;
-  }
-
-  const prefixes = config.ruleChecker;
-  return (ruleId: string) => prefixes.some((prefix) => ruleId.startsWith(prefix));
+  /** Optional config options to merge with default category toggles */
+  options?: Partial<Record<string, boolean>>;
+  /** Optional: Specific rule name that should be found in the error list for test to pass */
+  shouldFailRuleName?: string;
+  /** Optional: Specific rule name that should NOT be found in the error list for test to pass */
+  shouldNotFailRuleName?: string;
 }
 
 /**
@@ -54,9 +32,15 @@ function createRuleChecker(config: CategoryConfig): RuleChecker {
  *     category: 'unicorn',
  *     code: 'const buf = new Buffer("hello");',
  *     filePath: 'test.js',
- *     expectedRule: 'unicorn/no-new-buffer',
  *     description: 'should detect unicorn errors',
- *     categoryConfig: { ruleChecker: ['unicorn/'] }
+ *     shouldFailRuleName: 'unicorn/no-new-buffer', // This rule should be found in errors
+ *   },
+ *   {
+ *     category: 'unicorn',
+ *     code: 'const x = 1;',
+ *     filePath: 'test.js',
+ *     description: 'should not detect disabled rule',
+ *     shouldNotFailRuleName: 'unicorn/no-new-buffer', // This rule should NOT be found in errors
  *   }
  * ];
  *
@@ -70,6 +54,10 @@ function createRuleChecker(config: CategoryConfig): RuleChecker {
  *   eslintRulesTestRunner(fixtures, createConfig);
  * });
  * ```
+ *
+ * - `shouldFailRuleName`: If provided, asserts that this rule is present in the ESLint error list.
+ * - `shouldNotFailRuleName`: If provided, asserts that this rule is NOT present in the ESLint error list.
+ * - If neither is provided, the test will only check that ESLint runs without error.
  */
 export function eslintRulesTestRunner<T extends string>(
   fixtures: TestFixture[],
@@ -83,9 +71,10 @@ export function eslintRulesTestRunner<T extends string>(
       category,
       code,
       filePath,
-      expectedRule: _expectedRule,
       description,
-      categoryConfig,
+      options,
+      shouldFailRuleName,
+      shouldNotFailRuleName,
     }) => {
       it(description, async () => {
         // Create config with only the specific category enabled
@@ -97,8 +86,10 @@ export function eslintRulesTestRunner<T extends string>(
           {} as Partial<Record<T, boolean>>,
         );
 
-        const configArray = await configFunc(configOptions);
-        const ruleChecker = createRuleChecker(categoryConfig);
+        // Merge fixture options if present (fixture options take precedence)
+        const mergedOptions = { ...configOptions, ...(options || {}) };
+
+        const configArray = await configFunc(mergedOptions);
 
         try {
           // Filter out any conflicting "test" plugins to avoid duplication errors
@@ -130,40 +121,47 @@ export function eslintRulesTestRunner<T extends string>(
             filePath,
           });
 
-          const categoryErrors =
-            results[0]?.messages?.filter((m) => {
-              return m.ruleId ? ruleChecker(m.ruleId) : false;
-            }) || [];
-
-          // Handle lenient categories
-          if (categoryErrors.length === 0 && categoryConfig.isLenient) {
+          // Check for specific rule requirements
+          if (shouldFailRuleName || shouldNotFailRuleName) {
             const allRules =
               results[0]?.messages?.map((m) => m.ruleId).filter(Boolean) || [];
-            console.warn(`No ${category} errors found. All rules detected:`, allRules);
-            expect(results[0]?.messages?.length || 0).toBeGreaterThanOrEqual(0);
-            return;
-          }
 
-          expect(categoryErrors.length).toBeGreaterThan(0);
+            console.warn(`All rules detected:`, allRules);
 
-          // Log the actual errors found for debugging
-          if (categoryErrors.length > 0) {
+            if (shouldFailRuleName) {
+              const hasExpectedRule = allRules.includes(shouldFailRuleName);
+
+              if (!hasExpectedRule) {
+                throw new Error(
+                  `Expected rule '${shouldFailRuleName}' to be found in ESLint errors, but found: [${allRules.join(', ')}]`,
+                );
+              }
+
+              console.warn(`✓ Expected rule '${shouldFailRuleName}' found in errors`);
+            }
+
+            if (shouldNotFailRuleName) {
+              const hasUnexpectedRule = allRules.includes(shouldNotFailRuleName);
+
+              if (hasUnexpectedRule) {
+                throw new Error(
+                  `Rule '${shouldNotFailRuleName}' should NOT be found in ESLint errors, but it was found in: [${allRules.join(', ')}]`,
+                );
+              }
+
+              console.warn(
+                `✓ Rule '${shouldNotFailRuleName}' correctly not found in errors`,
+              );
+            }
+          } else {
+            // No specific rule checking - just ensure there are some ESLint errors
+            const allRules =
+              results[0]?.messages?.map((m) => m.ruleId).filter(Boolean) || [];
             console.warn(
-              `${category} errors found:`,
-              categoryErrors.map((e) => e.ruleId),
+              `No specific rule checker provided. All rules detected:`,
+              allRules,
             );
-          }
-
-          // Verify we have errors from the expected category
-          if (categoryErrors.length > 0) {
-            const ruleMappings = categoryConfig.ruleMappings || [category];
-            expect(
-              categoryErrors.some(
-                (err) =>
-                  err.ruleId &&
-                  ruleMappings.some((mapping) => err.ruleId!.includes(mapping)),
-              ),
-            ).toBe(true);
+            expect(results[0]?.messages?.length || 0).toBeGreaterThanOrEqual(0);
           }
         } catch (error) {
           console.error(`ESLint error for ${category}:`, error);

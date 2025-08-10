@@ -1,19 +1,39 @@
 import type { ConfigFuncType, ConfigOptions } from '@pixpilot/eslint-config-base';
+import config, { mergeOptions, overrideRules } from '@pixpilot/eslint-config-base';
+import jsxA11yRulesOverride from './jsx-a11y-overrides';
+import reactRulesOverride from './react-rules-overrides';
 
-import config, { deepMerge } from '@pixpilot/eslint-config-base';
+const dangleRules = overrideRules['no-underscore-dangle']!;
 
 const configFunc: ConfigFuncType = (op, ...rest) => {
   const options: ConfigOptions = {
-    react: true,
+    react: {
+      overrides: reactRulesOverride,
+    },
     type: 'app',
     jsx: {
       a11y: {
-        overrides: {},
+        overrides: jsxA11yRulesOverride,
       },
+    },
+    rules: {
+      'no-underscore-dangle': Array.isArray(dangleRules)
+        ? [
+            dangleRules[0],
+            {
+              ...dangleRules[1],
+              allow: Array.isArray(dangleRules[1]?.allow)
+                ? dangleRules[1].allow.concat(['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'])
+                : ['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'],
+            },
+          ]
+        : dangleRules,
     },
   };
 
-  return config(deepMerge(options, op), ...rest);
+  // console.log(config(mergeOptions(options, op), ...rest));
+
+  return config(mergeOptions(options, op), ...rest);
 };
 
 export default configFunc;
