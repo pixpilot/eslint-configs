@@ -1,6 +1,6 @@
 import turboPlugin from 'eslint-plugin-turbo';
 
-import config from '../../packages/eslint-config-base/src/config';
+import config from '../../packages/eslint-config/src/config';
 
 const baseConfig: ReturnType<typeof config> = config(
   {

@@ -1,4 +1,4 @@
-import type { Rules } from '@pixpilot/eslint-config';
+import type { Rules } from '@pixpilot/antfu-eslint-config';
 
 export const overrideRules: Rules = {
   'arrow-body-style': [

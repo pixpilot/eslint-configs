@@ -1,5 +1,5 @@
-import type { ConfigFuncType, ConfigOptions } from '@pixpilot/eslint-config-base';
-import config, { mergeOptions, overrideRules } from '@pixpilot/eslint-config-base';
+import type { ConfigFuncType, ConfigOptions } from '@pixpilot/eslint-config';
+import config, { mergeOptions, overrideRules } from '@pixpilot/eslint-config';
 import jsxA11yRulesOverride from './jsx-a11y-overrides';
 import reactRulesOverride from './react-rules-overrides';
 

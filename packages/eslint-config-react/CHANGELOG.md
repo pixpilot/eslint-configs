@@ -8,14 +8,14 @@
 
 ### Patch Changes
 
-- @pixpilot/eslint-config-base@0.1.0
+- @pixpilot/eslint-config@0.1.0
 
 ## 0.1.1
 
 ### Patch Changes
 
 - Updated dependencies
-  - @pixpilot/eslint-config-base@0.1.0
+  - @pixpilot/eslint-config@0.1.0
 
 ## 0.1.0
 

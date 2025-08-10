@@ -40,7 +40,6 @@
     "@commitlint/config-conventional": "catalog:dev",
     "@internal/prettier-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
-    "@pixpilot/eslint-config": "catalog:eslint",
     "@pixpilot/pnpm-workspace-package-generator": "catalog:dev",
     "@turbo/gen": "catalog:dev",
     "@types/node": "catalog:dev",

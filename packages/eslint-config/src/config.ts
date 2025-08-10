@@ -1,6 +1,6 @@
 import type { ConfigFuncType, ConfigOptions } from './types';
 
-import config from '@pixpilot/eslint-config';
+import config from '@pixpilot/antfu-eslint-config';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import { overrideRules } from './override-rules';
 import { mergeOptions } from './utils';

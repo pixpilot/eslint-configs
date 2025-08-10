@@ -1,5 +1,5 @@
 import config from './config';
 
-export * from '@pixpilot/eslint-config-base';
+export * from '@pixpilot/eslint-config';
 
 export default config;

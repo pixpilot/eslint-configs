@@ -1,7 +1,7 @@
 // All jsx-a11y rules for React ESLint config
 // Exported as a separate object for modularity and reuse
 
-import type { Rules } from '@pixpilot/eslint-config-base';
+import type { Rules } from '@pixpilot/eslint-config';
 
 const jsxA11yRules: Rules = {
   // ensure emoji are accessible

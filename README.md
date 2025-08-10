@@ -26,7 +26,7 @@ This monorepo contains shared ESLint configurations and utilities used across Pi
 
 ## 📦 Packages
 
-- [eslint-config-base](./packages/eslint-config-base) – Base ESLint config for JavaScript/TypeScript projects
+- [eslint-config](./packages/eslint-config) – Base ESLint config for JavaScript/TypeScript projects
 - [eslint-config-next](./packages/eslint-config-next) – ESLint config for Next.js projects
 - [eslint-config-react](./packages/eslint-config-react) – ESLint config for React projects
 - [eslint-test-utils](./packages/eslint-test-utils) – Utilities for testing custom ESLint rules

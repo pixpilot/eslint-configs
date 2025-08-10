@@ -1,4 +1,4 @@
-# @pixpilot/eslint-config-base
+# @pixpilot/antfu-eslint-config
 
 ## 0.1.0
 
