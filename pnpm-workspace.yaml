@@ -25,6 +25,7 @@ catalogs:
     typescript: ^5.9.2
     vitest: ^3.2.4
   eslint:
+    '@pixpilot/eslint-config': ^0.0.0
     eslint: ^9.32.0
     eslint-plugin-jest: ^29.0.1
     eslint-plugin-turbo: ^2.5.5
