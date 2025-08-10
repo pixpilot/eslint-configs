@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.2.1
+
+### Patch Changes
+
+- resolve cyclic dependency in @internal/prettier-config
+
 ## 0.1.0
 
 ### Minor Changes

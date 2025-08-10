@@ -1,5 +1,13 @@
 # @pixpilot/eslint-config-react
 
+## 0.2.1
+
+### Patch Changes
+
+- resolve cyclic dependency in @internal/prettier-config
+- Updated dependencies
+  - @pixpilot/eslint-config@2.2.1
+
 ## 0.2.0
 
 ### Minor Changes
