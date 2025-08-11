@@ -1,5 +1,11 @@
 # @pixpilot/eslint-config-next
 
+## 0.0.7
+
+### Patch Changes
+
+- rename job from 'build' to 'ci'
+
 ## 0.0.6
 
 ### Patch Changes
