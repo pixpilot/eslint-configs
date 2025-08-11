@@ -7,7 +7,7 @@ import { mergeOptions } from './utils';
 
 const configFunc: ConfigFuncType = (op, ...rest) => {
   const options: ConfigOptions = {
-    type: 'lib',
+    // type: 'lib',
     jsonc: true,
     yaml: true,
     gitignore: true,
@@ -40,6 +40,9 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
         rules: {
           ...eslintConfigPrettier.rules,
           'antfu/if-newline': 'off',
+          'antfu/curly': 'off',
+          'antfu/indent-unindent': 'off',
+          'antfu/consistent-list-newline': 'off',
         },
       } as any,
     ]);
