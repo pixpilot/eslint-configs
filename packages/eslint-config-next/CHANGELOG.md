@@ -1,5 +1,13 @@
 # @pixpilot/eslint-config-next
 
+## 0.0.5
+
+### Patch Changes
+
+- comment out unused `type` option and adjust Prettier rules
+- Updated dependencies
+  - @pixpilot/eslint-config-react@0.2.2
+
 ## 0.0.4
 
 ### Patch Changes

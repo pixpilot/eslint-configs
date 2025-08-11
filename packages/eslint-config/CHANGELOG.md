@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.2.2
+
+### Patch Changes
+
+- update TypeScript rules and add related tests
+
 ## 2.2.1
 
 ### Patch Changes
