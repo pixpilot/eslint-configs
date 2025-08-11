@@ -7,7 +7,7 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
     nextjs: true,
   };
 
-  return config(mergeOptions(options, op), ...rest);
+  return config(mergeOptions(options, op || {}), ...rest);
 };
 
 export default configFunc;

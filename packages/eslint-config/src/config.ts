@@ -7,7 +7,6 @@ import { mergeOptions } from './utils';
 
 const configFunc: ConfigFuncType = (op, ...rest) => {
   const options: ConfigOptions = {
-    // type: 'lib',
     jsonc: true,
     yaml: true,
     gitignore: true,
@@ -19,17 +18,26 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
     prettier: true,
     stylistic: true,
     rules: {
+      'ts/explicit-function-return-type': 'off',
+      'ts/explicit-module-boundary-types': 'error',
       ...overrideRules,
     },
   };
 
-  // const mergedOptions = { ...options, ...op } as ConfigOptions;
-
   const mergedOptions = mergeOptions(options, op || {}) as ConfigOptions;
+  const { prettier, ...antfuEslintOptions } = mergedOptions;
 
-  const { prettier, ...eslintConfig } = mergedOptions;
-
-  const configurations = config(eslintConfig, ...rest);
+  const configurations = config(
+    antfuEslintOptions,
+    {
+      files: ['**/*.tsx'],
+      rules: {
+        // Add override for TSX files to turn off 'ts/explicit-module-boundary-types'
+        'ts/explicit-module-boundary-types': 'off',
+      },
+    },
+    ...rest,
+  );
 
   if (mergedOptions.prettier) {
     configurations.append([

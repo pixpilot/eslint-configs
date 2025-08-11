@@ -67,7 +67,7 @@ function setOverridesRecursively(obj: any, overridesMap: Record<string, any>): v
  * - 'overrides' properties at any nesting level (e.g., react.overrides, jsx.a11y.overrides) are shallow merged
  * - All other properties are deep merged using the standard @fastify/deepmerge behavior
  */
-function mergeOptions(target: any, ...sources: any[]): any {
+function mergeOptions<T extends object>(target: T, ...sources: T[]): T {
   if (sources.length === 0) {
     return target;
   }
@@ -136,7 +136,7 @@ function mergeOptions(target: any, ...sources: any[]): any {
   // Set all overrides back into the result
   setOverridesRecursively(result, allOverrides);
 
-  return result;
+  return result as T;
 }
 
 export { mergeOptions };

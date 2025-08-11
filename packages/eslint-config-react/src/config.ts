@@ -33,7 +33,7 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
 
   // console.log(config(mergeOptions(options, op), ...rest));
 
-  return config(mergeOptions(options, op), ...rest);
+  return config(mergeOptions(options, op || {}), ...rest);
 };
 
 export default configFunc;

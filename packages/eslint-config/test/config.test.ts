@@ -140,6 +140,22 @@ console.log('test');
         prettier: true,
       },
     },
+    {
+      category: 'typescript',
+      code: `export function foo(x) { return x; }`,
+      filePath: 'test.ts',
+      description:
+        'should report error for missing explicit module boundary types in TS file',
+      shouldFailRuleName: 'ts/explicit-module-boundary-types',
+    },
+    {
+      category: 'typescript',
+      code: `export function Bar(props) { return <div>{props.children}</div>; }`,
+      filePath: 'test.tsx',
+      description:
+        'should NOT report error for missing explicit module boundary types in TSX file (rule is off)',
+      shouldNotFailRuleName: 'ts/explicit-module-boundary-types',
+    },
   ];
 
   // Define the available categories for type safety
