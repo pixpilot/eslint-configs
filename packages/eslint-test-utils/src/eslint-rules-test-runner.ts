@@ -1,14 +1,14 @@
 import { ESLint } from 'eslint';
 import { expect, it } from 'vitest';
 
-export interface TestFixture {
+export interface TestFixture<Options = Record<string, any>> {
   category: string;
   code: string;
   filePath: string;
   description: string;
 
   /** Optional config options to merge with default category toggles */
-  options?: Partial<Record<string, boolean>>;
+  options?: Options;
   /** Optional: Specific rule name that should be found in the error list for test to pass */
   shouldFailRuleName?: string;
   /** Optional: Specific rule name that should NOT be found in the error list for test to pass */
@@ -61,7 +61,7 @@ export interface TestFixture {
  */
 export function eslintRulesTestRunner<T extends string>(
   fixtures: TestFixture[],
-  configFunc: (options: Partial<Record<T, boolean>>) => Promise<any>,
+  configFunc: (options: Record<string, any>) => Promise<any>,
 ): void {
   // Extract unique categories from fixtures to build the type-safe options
   const allCategories = [...new Set(fixtures.map((f) => f.category))] as T[];
@@ -83,11 +83,29 @@ export function eslintRulesTestRunner<T extends string>(
             acc[cat] = cat === category;
             return acc;
           },
-          {} as Partial<Record<T, boolean>>,
+          {} as Record<string, any>,
         );
 
-        // Merge fixture options if present (fixture options take precedence)
-        const mergedOptions = { ...configOptions, ...(options || {}) };
+        // Deep merge fixture options if present (fixture options take precedence)
+        function deepMerge(target: any, source: any): any {
+          if (
+            typeof target !== 'object' ||
+            typeof source !== 'object' ||
+            !target ||
+            !source
+          )
+            return source ?? target;
+          const result = { ...target };
+          for (const key of Object.keys(source)) {
+            if (key in target) {
+              result[key] = deepMerge(target[key], source[key]);
+            } else {
+              result[key] = source[key];
+            }
+          }
+          return result;
+        }
+        const mergedOptions = options ? deepMerge(configOptions, options) : configOptions;
 
         const configArray = await configFunc(mergedOptions);
 
