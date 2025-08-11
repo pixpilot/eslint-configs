@@ -1,5 +1,11 @@
 # @pixpilot/eslint-test-utils
 
+## 0.3.0
+
+### Minor Changes
+
+- enhance ESLint configuration with test options
+
 ## 0.2.0
 
 ### Minor Changes

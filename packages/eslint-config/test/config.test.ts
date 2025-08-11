@@ -50,7 +50,7 @@ describe('configFunc (integration tests for all rule categories)', () => {
    */
 
   // Test fixtures for different rule categories
-  const testFixtures: TestFixture[] = [
+  const testFixtures: TestFixture<ConfigOptions>[] = [
     {
       category: 'unicorn',
       code: `const buf = new Buffer('hello');`,
@@ -155,6 +155,61 @@ console.log('test');
       description:
         'should NOT report error for missing explicit module boundary types in TSX file (rule is off)',
       shouldNotFailRuleName: 'ts/explicit-module-boundary-types',
+    },
+    {
+      category: 'test-relaxed',
+      code: `console.log('testing');`,
+      filePath: 'foo.test.ts',
+      description:
+        'should not report no-console error in test files when test.relaxed is enabled',
+      shouldNotFailRuleName: 'no-console',
+      options: {
+        test: { relaxed: true },
+      },
+    },
+    {
+      category: 'test-relaxed',
+      code: `console.log('testing');`,
+      filePath: '__tests__/bar.ts',
+      description:
+        'should not report no-console error in __tests__ folder files when test.relaxed is enabled',
+      shouldNotFailRuleName: 'no-console',
+      options: {
+        test: { relaxed: true },
+      },
+    },
+    {
+      category: 'test-relaxed',
+      code: `console.log('testing');`,
+      filePath: 'test/foo/bar.ts',
+      description:
+        'should not report no-console error in test folder files when test.relaxed is enabled',
+      shouldNotFailRuleName: 'no-console',
+      options: {
+        test: { relaxed: true },
+      },
+    },
+    {
+      category: 'test-relaxed',
+      code: `console.log('testing');`,
+      filePath: 'bar.ts',
+      description:
+        'should report no-console error in NONE test folder files when test.relaxed is enabled',
+      shouldFailRuleName: 'no-console',
+      options: {
+        test: { relaxed: true },
+      },
+    },
+    {
+      category: 'test-relaxed',
+      code: `console.log('testing');`,
+      filePath: 'foo.test.ts',
+      description:
+        'should report no-console error in test files when test.relaxed is disabled',
+      shouldFailRuleName: 'no-console',
+      options: {
+        test: { relaxed: false },
+      },
     },
   ];
 

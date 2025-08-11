@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.3.0
+
+### Minor Changes
+
+- enhance ESLint configuration with test options
+
 ## 2.2.2
 
 ### Patch Changes
