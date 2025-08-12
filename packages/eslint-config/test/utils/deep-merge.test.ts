@@ -3,23 +3,23 @@ import { mergeOptions } from '../../src/utils/deep-merge';
 
 describe('mergeOptions', () => {
   it('merges two flat objects', () => {
-    const a = { foo: 1, bar: 2 };
-    const b = { bar: 3, baz: 4 };
+    const a: Record<string, any> = { foo: 1, bar: 2 };
+    const b: Record<string, any> = { bar: 3, baz: 4 };
     const result = mergeOptions(a, b);
     expect(result).toEqual({ foo: 1, bar: 3, baz: 4 });
   });
 
   it('merges nested objects', () => {
-    const a = { foo: { bar: 1, baz: 2 } };
-    const b = { foo: { baz: 3, qux: 4 } };
+    const a: Record<string, any> = { foo: { bar: 1, baz: 2 } };
+    const b: Record<string, any> = { foo: { baz: 3, qux: 4 } };
     const result = mergeOptions(a, b);
     expect(result).toEqual({ foo: { bar: 1, baz: 3, qux: 4 } });
   });
 
   it('merges more than two objects', () => {
-    const a = { foo: 1 };
-    const b = { bar: 2 };
-    const c = { foo: 3, baz: 4 };
+    const a: Record<string, any> = { foo: 1 };
+    const b: Record<string, any> = { bar: 2 };
+    const c: Record<string, any> = { foo: 3, baz: 4 };
     const result = mergeOptions(a, b, c);
     expect(result).toEqual({ foo: 3, bar: 2, baz: 4 });
   });
@@ -41,8 +41,8 @@ describe('mergeOptions', () => {
   });
 
   it('does not mutate input objects', () => {
-    const a = { foo: { bar: 1 } };
-    const b = { foo: { baz: 2 } };
+    const a: Record<string, any> = { foo: { bar: 1 } };
+    const b: Record<string, any> = { foo: { baz: 2 } };
     const aCopy = JSON.parse(JSON.stringify(a));
     const bCopy = JSON.parse(JSON.stringify(b));
     mergeOptions(a, b);
@@ -51,14 +51,14 @@ describe('mergeOptions', () => {
   });
 
   it('handles rules property with shallow merge instead of deep merge', () => {
-    const a = {
+    const a: Record<string, any> = {
       other: { nested: { value: 1 } },
       rules: {
         'rule-a': 'error',
         'rule-b': ['error', { option: 'old' }],
       },
     };
-    const b = {
+    const b: Record<string, any> = {
       other: { nested: { newValue: 2 } },
       rules: {
         'rule-b': ['warn', { option: 'new' }],
@@ -82,7 +82,7 @@ describe('mergeOptions', () => {
   });
 
   it('handles nested overrides properties with shallow merge', () => {
-    const a = {
+    const a: Record<string, any> = {
       other: { nested: { value: 1 } },
       react: {
         overrides: {
@@ -100,7 +100,7 @@ describe('mergeOptions', () => {
       },
     };
 
-    const b = {
+    const b: Record<string, any> = {
       other: { nested: { newValue: 2 } },
       react: {
         overrides: {
