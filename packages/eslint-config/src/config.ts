@@ -42,9 +42,9 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
     ...rest,
   );
 
-  // Always set up test file rules for ts/no-non-null-assertion
   if (test) {
     if (test.relaxed === true) {
+      // Relaxed test rules
       configurations.append([
         {
           files: [...GLOB_TESTS, '**/test/**/*.ts', '**/tests/**/*.ts'],
@@ -61,6 +61,7 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
             'ts/typedef': 'off',
             'ts/no-explicit-any': 'off',
             'ts/ban-ts-comment': 'off',
+            'no-magic-numbers': 'off',
           },
         },
       ]);
