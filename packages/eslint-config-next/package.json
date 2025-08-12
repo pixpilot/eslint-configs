@@ -1,8 +1,8 @@
 {
   "name": "@pixpilot/eslint-config-next",
   "type": "module",
-  "version": "0.0.6",
-  "packageManager": "pnpm@10.14.0",
+  "version": "0.0.7",
+  "packageManager": "pnpm@10.12.2",
   "author": "m.doaie <m.doaie@hotmail.com> (https://github.com/ccpu)",
   "license": "MIT",
   "repository": {
