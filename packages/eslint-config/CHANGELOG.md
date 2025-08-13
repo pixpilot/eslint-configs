@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.4.2
+
+### Patch Changes
+
+- e2c2d93: relase base configs
+
 ## 2.4.1
 
 ### Patch Changes
