@@ -1,5 +1,11 @@
 # @pixpilot/eslint-test-utils
 
+## 0.4.0
+
+### Minor Changes
+
+- update TypeScript configuration and improve ESLint rules
+
 ## 0.3.0
 
 ### Minor Changes
