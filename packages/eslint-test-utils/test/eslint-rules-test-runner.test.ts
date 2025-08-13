@@ -51,11 +51,13 @@ describe('eslintRulesTestRunner', () => {
 
       const unicornFixtures: TestFixture[] = [
         {
-          category: 'unicorn',
           code: 'const buf = new Buffer("test");',
           filePath: 'test.js',
           description: 'should detect deprecated Buffer usage',
           shouldFailRuleName: 'unicorn/no-new-buffer',
+          options: {
+            unicorn: true,
+          },
         },
       ];
 
@@ -76,31 +78,37 @@ describe('eslintRulesTestRunner', () => {
 
       const mixedFixtures: TestFixture[] = [
         {
-          category: 'unicorn',
           code: 'const buf = new Buffer("test");',
           filePath: 'test.js',
           description: 'should handle string array rule checker',
           shouldFailRuleName: 'unicorn/no-new-buffer',
+          options: {
+            unicorn: true,
+          },
         },
         {
-          category: 'custom',
           code: 'const test = "example";',
           filePath: 'test.js',
           description: 'should handle function rule checker',
           shouldFailRuleName: 'custom/my-rule',
+          options: {
+            custom: true,
+          },
         },
         {
-          category: 'imports',
           code: 'import unused from "module";',
           filePath: 'test.js',
           description: 'should validate with rule mappings',
           shouldFailRuleName: 'some-import-rule/no-unused',
+          options: {
+            imports: true,
+          },
         },
       ];
 
       beforeEach(() => {
         // Set up different responses based on the test scenario
-        mockESLintInstance.lintText.mockImplementation((code: string) => {
+        mockESLintInstance.lintText.mockImplementation(async (code: string) => {
           if (code.includes('Buffer')) {
             return Promise.resolve([
               {
@@ -159,10 +167,12 @@ describe('eslintRulesTestRunner', () => {
 
       const lenientFixtures: TestFixture[] = [
         {
-          category: 'lenient',
           code: 'const valid = "code";',
           filePath: 'test.js',
           description: 'should handle lenient category with no errors',
+          options: {
+            lenient: true,
+          },
         },
       ];
 
@@ -173,7 +183,7 @@ describe('eslintRulesTestRunner', () => {
       const mockConfigFunc = vi.fn().mockResolvedValue([{}]);
 
       beforeEach(() => {
-        mockESLintInstance.lintText.mockImplementation((code: string) => {
+        mockESLintInstance.lintText.mockImplementation(async (code: string) => {
           if (code.includes('Buffer')) {
             return Promise.resolve([
               {
@@ -206,25 +216,31 @@ describe('eslintRulesTestRunner', () => {
 
       const duplicateFixtures: TestFixture[] = [
         {
-          category: 'unicorn',
           code: 'const buf1 = new Buffer("test1");',
           filePath: 'test1.js',
           description: 'first unicorn test',
           shouldFailRuleName: 'unicorn/no-new-buffer',
+          options: {
+            unicorn: true,
+          },
         },
         {
-          category: 'unicorn',
           code: 'const buf2 = new Buffer("test2");',
           filePath: 'test2.js',
           description: 'second unicorn test',
           shouldFailRuleName: 'unicorn/no-new-buffer',
+          options: {
+            unicorn: true,
+          },
         },
         {
-          category: 'imports',
           code: 'import fs from "fs";',
           filePath: 'test3.js',
           description: 'imports test',
           shouldFailRuleName: 'unused-imports/no-unused-imports',
+          options: {
+            imports: true,
+          },
         },
       ];
 

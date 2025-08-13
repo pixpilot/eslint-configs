@@ -1,6 +1,7 @@
+/* eslint-disable no-magic-numbers */
 import type { Rules } from '@pixpilot/antfu-eslint-config';
 
-export const overrideRules: Rules = {
+export const jsOverrideRules: Rules = {
   'arrow-body-style': [
     'error',
     'as-needed',
@@ -8,8 +9,8 @@ export const overrideRules: Rules = {
       requireReturnForObjectLiteral: false,
     },
   ],
-  'arrow-parens': ['error', 'always'],
-  'arrow-spacing': [
+  'style/arrow-parens': ['error', 'always'],
+  'style/arrow-spacing': [
     'error',
     {
       after: true,
@@ -19,17 +20,10 @@ export const overrideRules: Rules = {
   complexity: ['off', 20],
   'consistent-return': ['error'],
   curly: ['error', 'multi-line'],
-  'default-case': [
-    'error',
-    {
-      commentPattern: '^no default$',
-    },
-  ],
-  'default-param-last': ['error'],
-  'dot-location': ['error', 'property'],
+  'style/dot-location': ['error', 'property'],
   'for-direction': 'error',
   'func-call-spacing': ['error', 'never'],
-  'generator-star-spacing': [
+  'style/generator-star-spacing': [
     'error',
     {
       after: true,
@@ -47,7 +41,7 @@ export const overrideRules: Rules = {
   'max-classes-per-file': ['error', 6],
   'no-await-in-loop': 'error',
   'no-bitwise': 'error',
-  'no-confusing-arrow': [
+  'style/no-confusing-arrow': [
     'error',
     {
       allowParens: true,
@@ -63,30 +57,23 @@ export const overrideRules: Rules = {
       allowElseIf: false,
     },
   ],
-  'no-empty-function': [
-    'error',
-    {
-      allow: ['constructors', 'arrowFunctions'],
-    },
-  ],
   'no-empty-static-block': ['error'],
   'no-eq-null': 'off',
   'no-extra-label': 'error',
-  'no-extra-semi': 'error',
-  'no-floating-decimal': 'error',
+  'style/no-extra-semi': 'error',
+  'style/no-floating-decimal': 'error',
   'no-implicit-coercion': ['error'],
   'no-implicit-globals': ['error'],
   'no-inner-declarations': 'error',
-  'no-invalid-this': 'off',
   'no-label-var': 'error',
   'no-lonely-if': 'error',
-  'no-loop-func': 'error',
   'no-magic-numbers': [
     'warn',
     {
       enforceConst: true,
       ignore: [-1, 0, 1],
       ignoreArrayIndexes: true,
+      ignoreEnums: true,
     },
   ],
   'no-multi-assign': 'error',
@@ -121,10 +108,8 @@ export const overrideRules: Rules = {
     },
   ],
   'no-return-assign': ['error', 'always'],
-  'no-return-await': ['error'],
   'no-script-url': ['error'],
   'no-setter-return': 'error',
-  'no-shadow': 'error',
   'no-underscore-dangle': [
     'error',
     {
@@ -142,7 +127,6 @@ export const overrideRules: Rules = {
     },
   ],
   'no-unused-labels': 'error',
-  'no-unused-private-class-members': 'error',
   'no-useless-concat': 'error',
   'no-useless-escape': 'error',
   'no-void': 'error',
@@ -174,9 +158,7 @@ export const overrideRules: Rules = {
   'prefer-object-has-own': 'error',
   'prefer-object-spread': 'error',
   radix: 'error',
-  'require-await': 'error',
   'require-unicode-regexp': 'error',
-  'require-yield': 'error',
   // eslint-config-prettier disables this rule
   'style/wrap-iife': [
     'error',
@@ -187,4 +169,20 @@ export const overrideRules: Rules = {
   ],
   'node/global-require': 'error',
   'no-buffer-constructor': 'error',
+  'no-unused-private-class-members': 'error',
 };
+
+export const tsOverrideRules: Rules = {
+  'ts/default-param-last': ['error'],
+  'ts/no-empty-function': [
+    'error',
+    {
+      allow: ['constructors', 'arrowFunctions'],
+    },
+  ],
+  'ts/no-invalid-this': 'off',
+  'ts/no-loop-func': 'error',
+  'ts/no-shadow': 'error',
+};
+
+export const overrideRules: Rules = { ...jsOverrideRules, ...tsOverrideRules };

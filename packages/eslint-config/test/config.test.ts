@@ -34,67 +34,61 @@ describe('configFunc', () => {
 });
 
 describe('configFunc (integration tests for all rule categories)', () => {
-  /**
-   * Comprehensive integration tests that verify all available rule categories work correctly.
-   * These tests create specific code violations for each category and verify that the
-   * corresponding ESLint rules detect them.
-   *
-   * Rule categories tested:
-   * - unicorn: ESLint plugin for better JavaScript/TypeScript practices
-   * - imports: Import/export related rules including unused imports
-   * - regexp: Regular expression optimization and best practices
-   * - jsonc: JSON with comments linting
-   * - yaml: YAML file linting
-   * - markdown: Markdown file linting (within code blocks)
-   * - stylistic: Code formatting and style rules
-   */
-
   // Test fixtures for different rule categories
   const testFixtures: TestFixture<ConfigOptions>[] = [
     {
-      category: 'unicorn',
       code: `const buf = new Buffer('hello');`,
       filePath: 'test.js',
       description: 'should report unicorn rule errors for deprecated Buffer constructor',
       shouldFailRuleName: 'unicorn/no-new-buffer',
+      options: {
+        unicorn: true,
+      },
     },
     {
-      category: 'imports',
       code: `import fs from 'fs';\nimport path from 'path';\nconsole.log('unused imports');`,
       filePath: 'test.js',
       description: 'should report import rule errors for unused imports',
       shouldFailRuleName: 'unused-imports/no-unused-imports',
+      options: {
+        imports: true,
+      },
     },
     {
-      category: 'regexp',
       code: `const regex = /[a-zA-Z0-9]/; // Could be simplified`,
       filePath: 'test.js',
       description: 'should report regexp rule errors for non-optimized regex patterns',
       shouldFailRuleName: 'regexp/use-ignore-case',
+      options: {
+        regexp: true,
+      },
     },
     {
-      category: 'jsonc',
       code: `{
-  "name": "test",
-  "version": "1.0.0",
-  "name": "duplicate"
-}`,
+      "name": "test",
+      "version": "1.0.0",
+      "name": "duplicate"
+    }`,
       filePath: 'test.json',
       description: 'should report JSONC rule errors for duplicate keys',
       shouldFailRuleName: 'jsonc/no-dupe-keys',
+      options: {
+        jsonc: true,
+      },
     },
     {
-      category: 'yaml',
       code: `---
-items:
-  -
-  - value`,
+    items:
+      -
+      - value`,
       filePath: 'test.yaml',
       description: 'should report YAML rule errors for empty sequence entries',
       shouldFailRuleName: 'yaml/no-empty-sequence-entry',
+      options: {
+        yaml: true,
+      },
     },
     {
-      category: 'markdown',
       code: `# Test Markdown
 
 \`\`\`javascript
@@ -104,19 +98,22 @@ console.log('test');
       filePath: 'test.md',
       description: 'should report rule errors in markdown code blocks',
       shouldFailRuleName: 'no-var',
+      options: {
+        markdown: true,
+      },
     },
     {
-      category: 'unicorn',
-      code: `async function createTypedConfig() {
-        console.log('hello');
-      }`,
+      code: `function bitwiseTest() {
+            return 1 & 2;
+          }`,
       filePath: 'test.js',
-      description:
-        "should report error for async function with no 'await' expression (require-await)",
-      shouldFailRuleName: 'require-await',
+      description: 'should report error for bitwise operator usage (no-bitwise)',
+      shouldFailRuleName: 'no-bitwise',
+      options: {
+        unicorn: true,
+      },
     },
     {
-      category: 'stylistic',
       code: `var x = function () { return { y: 1 };}(); // unwrapped IIFE`,
       filePath: 'test.js',
       description: 'should report stylistic rule errors for unwrapped IIFE',
@@ -126,10 +123,10 @@ console.log('test');
         // This test should fail if prettier is enabled
         // because it disables the style/wrap-iife rule
         prettier: false,
+        stylistic: true,
       },
     },
     {
-      category: 'stylistic',
       code: `var x = function () { return { y: 1 };}(); // unwrapped IIFE`,
       filePath: 'test.js',
       description:
@@ -138,26 +135,30 @@ console.log('test');
 
       options: {
         prettier: true,
+        stylistic: true,
       },
     },
     {
-      category: 'typescript',
       code: `export function foo(x) { return x; }`,
       filePath: 'test.ts',
       description:
         'should report error for missing explicit module boundary types in TS file',
       shouldFailRuleName: 'ts/explicit-module-boundary-types',
+      options: {
+        typescript: { tsconfigPath: '' }, // Ensure TS rules are applied
+      },
     },
     {
-      category: 'typescript',
       code: `export function Bar(props) { return <div>{props.children}</div>; }`,
       filePath: 'test.tsx',
       description:
         'should NOT report error for missing explicit module boundary types in TSX file (rule is off)',
       shouldNotFailRuleName: 'ts/explicit-module-boundary-types',
+      options: {
+        typescript: { tsconfigPath: '' },
+      },
     },
     {
-      category: 'test-relaxed',
       code: `console.log('testing');`,
       filePath: 'foo.test.ts',
       description:
@@ -165,10 +166,10 @@ console.log('test');
       shouldNotFailRuleName: 'no-console',
       options: {
         test: { relaxed: true },
+        typescript: { tsconfigPath: '' },
       },
     },
     {
-      category: 'test-relaxed',
       code: `console.log('testing');`,
       filePath: '__tests__/bar.ts',
       description:
@@ -176,10 +177,10 @@ console.log('test');
       shouldNotFailRuleName: 'no-console',
       options: {
         test: { relaxed: true },
+        typescript: { tsconfigPath: '' },
       },
     },
     {
-      category: 'test-relaxed',
       code: `console.log('testing');`,
       filePath: 'test/foo/bar.ts',
       description:
@@ -187,10 +188,10 @@ console.log('test');
       shouldNotFailRuleName: 'no-console',
       options: {
         test: { relaxed: true },
+        typescript: { tsconfigPath: '' }, // Ensure TS rules are applied
       },
     },
     {
-      category: 'test-relaxed',
       code: `console.log('testing');`,
       filePath: 'bar.ts',
       description:
@@ -198,10 +199,10 @@ console.log('test');
       shouldFailRuleName: 'no-console',
       options: {
         test: { relaxed: true },
+        typescript: { tsconfigPath: '' },
       },
     },
     {
-      category: 'test-relaxed',
       code: `console.log('testing');`,
       filePath: 'foo.test.ts',
       description:
@@ -209,22 +210,13 @@ console.log('test');
       shouldFailRuleName: 'no-console',
       options: {
         test: { relaxed: false },
+        typescript: { tsconfigPath: '' },
       },
     },
   ];
 
-  // Define the available categories for type safety
-  type ConfigCategory =
-    | 'unicorn'
-    | 'imports'
-    | 'regexp'
-    | 'jsonc'
-    | 'yaml'
-    | 'markdown'
-    | 'stylistic';
-
   // Helper function to create a typed config function wrapper
-  function createTypedConfig(options: { [K in ConfigCategory]?: boolean } = {}) {
+  async function createTypedConfig(options: ConfigOptions = {}) {
     // Enable all categories by default
     const categoryOverrides = {
       unicorn: false,
@@ -252,11 +244,11 @@ console.log('test');
 
     // Test code that should trigger multiple rule categories
     const code = `
-import fs from 'fs';
-const buf = new Buffer('hello');
-const regex = /[a-zA-Z0-9]/;
-console.log('test');
-`;
+  import fs from 'fs';
+  const buf = new Buffer('hello');
+  const regex = /[a-zA-Z0-9]/;
+  console.log('test');
+  `;
 
     try {
       // Filter out any conflicting "test" plugins to avoid duplication errors
@@ -267,8 +259,11 @@ console.log('test');
               const filteredPlugins = { ...plugins };
 
               // Remove any test plugin that might conflict with Vitest's test plugin
-              if (filteredPlugins.test && typeof filteredPlugins.test === 'object') {
-                delete filteredPlugins.test;
+              if (
+                filteredPlugins['test'] &&
+                typeof filteredPlugins['test'] === 'object'
+              ) {
+                delete filteredPlugins['test'];
               }
 
               return {

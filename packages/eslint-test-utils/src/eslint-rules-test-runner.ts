@@ -1,17 +1,21 @@
+/* eslint-disable ts/strict-boolean-expressions */
+
 import { ESLint } from 'eslint';
 import { expect, it } from 'vitest';
 
 export interface TestFixture<Options = Record<string, any>> {
-  category: string;
+  /** The code sample to lint for this test case */
   code: string;
+  /** The file path to associate with the linted code */
   filePath: string;
+  /** Description of the test case */
   description: string;
 
   /** Optional config options to merge with default category toggles */
   options?: Options;
-  /** Optional: Specific rule name that should be found in the error list for test to pass */
+  /** Specific rule name that should be found in the error list for test to pass */
   shouldFailRuleName?: string;
-  /** Optional: Specific rule name that should NOT be found in the error list for test to pass */
+  /** Specific rule name that should NOT be found in the error list for test to pass */
   shouldNotFailRuleName?: string;
 }
 
@@ -59,16 +63,14 @@ export interface TestFixture<Options = Record<string, any>> {
  * - `shouldNotFailRuleName`: If provided, asserts that this rule is NOT present in the ESLint error list.
  * - If neither is provided, the test will only check that ESLint runs without error.
  */
-export function eslintRulesTestRunner<T extends string>(
+export function eslintRulesTestRunner(
   fixtures: TestFixture[],
   configFunc: (options: Record<string, any>) => Promise<any>,
 ): void {
   // Extract unique categories from fixtures to build the type-safe options
-  const allCategories = [...new Set(fixtures.map((f) => f.category))] as T[];
 
   fixtures.forEach(
     ({
-      category,
       code,
       filePath,
       description,
@@ -77,37 +79,12 @@ export function eslintRulesTestRunner<T extends string>(
       shouldNotFailRuleName,
     }) => {
       it(description, async () => {
-        // Create config with only the specific category enabled
-        const configOptions = allCategories.reduce(
-          (acc, cat) => {
-            acc[cat] = cat === category;
-            return acc;
-          },
-          {} as Record<string, any>,
-        );
+        const mergedOptions = options || {};
 
-        // Deep merge fixture options if present (fixture options take precedence)
-        function deepMerge(target: any, source: any): any {
-          if (
-            typeof target !== 'object' ||
-            typeof source !== 'object' ||
-            !target ||
-            !source
-          )
-            return source ?? target;
-          const result = { ...target };
-          for (const key of Object.keys(source)) {
-            if (key in target) {
-              result[key] = deepMerge(target[key], source[key]);
-            } else {
-              result[key] = source[key];
-            }
-          }
-          return result;
-        }
-        const mergedOptions = options ? deepMerge(configOptions, options) : configOptions;
+        const configArrayUnknown = (await configFunc(mergedOptions)) as unknown;
 
-        const configArray = await configFunc(mergedOptions);
+        // Narrow the type to expected ESLint config array/object
+        const configArray = configArrayUnknown as ESLint.Options['overrideConfig'];
 
         try {
           // Filter out any conflicting "test" plugins to avoid duplication errors
@@ -118,8 +95,11 @@ export function eslintRulesTestRunner<T extends string>(
                   const filteredPlugins = { ...plugins };
 
                   // Remove any test plugin that might conflict with Vitest's test plugin
-                  if (filteredPlugins.test && typeof filteredPlugins.test === 'object') {
-                    delete filteredPlugins.test;
+                  if (
+                    filteredPlugins['test'] &&
+                    typeof filteredPlugins['test'] === 'object'
+                  ) {
+                    delete filteredPlugins['test'];
                   }
 
                   return {
@@ -182,7 +162,7 @@ export function eslintRulesTestRunner<T extends string>(
             expect(results[0]?.messages?.length || 0).toBeGreaterThanOrEqual(0);
           }
         } catch (error) {
-          console.error(`ESLint error for ${category}:`, error);
+          console.error(`ESLint error for "${description}":`, error);
           throw error;
         }
       });

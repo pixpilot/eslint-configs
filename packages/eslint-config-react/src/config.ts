@@ -5,6 +5,7 @@ import reactRulesOverride from './react-rules-overrides';
 
 const dangleRules = overrideRules['no-underscore-dangle']!;
 
+// eslint-disable-next-line ts/promise-function-async
 const configFunc: ConfigFuncType = (op, ...rest) => {
   const options: ConfigOptions = {
     react: {

@@ -69,12 +69,12 @@ describe('mergeOptions', () => {
     const result = mergeOptions(a, b);
 
     // Other properties should be deep merged
-    expect(result.other).toEqual({
+    expect(result['other']).toEqual({
       nested: { value: 1, newValue: 2 },
     });
 
     // Rules should be shallow merged (rule-b should be completely replaced, not deep merged)
-    expect(result.rules).toEqual({
+    expect(result['rules']).toEqual({
       'rule-a': 'error',
       'rule-b': ['warn', { option: 'new' }], // Completely replaced, not merged
       'rule-c': 'off',
@@ -121,23 +121,23 @@ describe('mergeOptions', () => {
     const result = mergeOptions(a, b);
 
     // Other properties should be deep merged
-    expect(result.other).toEqual({
+    expect(result['other']).toEqual({
       nested: { value: 1, newValue: 2 },
     });
 
     // Deep properties should still be deep merged
-    expect(result.react.someOtherProp).toEqual({
+    expect(result['react'].someOtherProp).toEqual({
       deep: { value: 'old', newValue: 'new' },
     });
 
     // But overrides should be shallow merged
-    expect(result.react.overrides).toEqual({
+    expect(result['react'].overrides).toEqual({
       'react/prop-types': 'off',
       'react/no-unused-prop-types': ['warn', { skipShapeProps: false }], // Completely replaced
       'react/jsx-uses-vars': 'error',
     });
 
-    expect(result.jsx.a11y.overrides).toEqual({
+    expect(result['jsx'].a11y.overrides).toEqual({
       'jsx-a11y/alt-text': 'warn',
       'jsx-a11y/click-events-have-key-events': 'error',
     });

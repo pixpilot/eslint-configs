@@ -1,12 +1,16 @@
 import type { ConfigFuncType, ConfigOptions } from './types';
 
+// Use require to import process to avoid using the global variable directly
+import process from 'node:process';
 import config, { GLOB_TESTS } from '@pixpilot/antfu-eslint-config';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import { overrideRules } from './override-rules';
-import { mergeOptions } from './utils';
 
+import { findTsConfig, mergeOptions, shouldSetTsconfigPath } from './utils';
+
+// eslint-disable-next-line ts/promise-function-async
 const configFunc: ConfigFuncType = (op, ...rest) => {
-  const options: ConfigOptions = {
+  let options: ConfigOptions = {
     jsonc: true,
     yaml: true,
     gitignore: true,
@@ -27,8 +31,25 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
     },
   };
 
+  if (shouldSetTsconfigPath(op || {})) {
+    const tsconfig = findTsConfig();
+
+    if (tsconfig != null && tsconfig !== '') {
+      if (process.env['NODE_ENV'] !== 'test') {
+        options = {
+          ...options,
+          typescript: {
+            tsconfigPath: tsconfig,
+          },
+        };
+      }
+    }
+  }
+
   const mergedOptions = mergeOptions(options, op || {}) as ConfigOptions;
-  const { prettier, test, ...antfuEslintOptions } = mergedOptions;
+  const { prettier, test, ...restOfAntfuEslintOptions } = mergedOptions;
+
+  const antfuEslintOptions = restOfAntfuEslintOptions;
 
   const configurations = config(
     antfuEslintOptions,
@@ -45,6 +66,8 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
   if (test) {
     if (test.relaxed === true) {
       // Relaxed test rules
+
+      // eslint-disable-next-line ts/no-floating-promises
       configurations.append([
         {
           files: [...GLOB_TESTS, '**/test/**/*.ts', '**/tests/**/*.ts'],
@@ -62,6 +85,7 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
             'ts/no-explicit-any': 'off',
             'ts/ban-ts-comment': 'off',
             'no-magic-numbers': 'off',
+            'no-await-in-loop': 'off',
           },
         },
       ]);
@@ -69,6 +93,7 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
   }
 
   if (mergedOptions.prettier) {
+    // eslint-disable-next-line ts/no-floating-promises
     configurations.append([
       {
         // This enables Prettier compatibility for flat config

@@ -13,15 +13,15 @@ function extractOverridesRecursively(obj: any): Record<string, any> {
   const overrides: Record<string, any> = {};
 
   function traverse(current: any, path: string[] = []): void {
-    if (current && typeof current === 'object' && !Array.isArray(current)) {
-      for (const [key, value] of Object.entries(current)) {
+    if (Boolean(current) && typeof current === 'object' && !Array.isArray(current)) {
+      for (const [key, value] of Object.entries(current as Record<string, unknown>)) {
         const currentPath = [...path, key];
 
         if (key === 'overrides') {
           // Store the path to this overrides property
           const pathKey = currentPath.slice(0, -1).join('.');
           overrides[pathKey] = value;
-        } else if (value && typeof value === 'object' && !Array.isArray(value)) {
+        } else if (Boolean(value) && typeof value === 'object' && !Array.isArray(value)) {
           traverse(value, currentPath);
         }
       }
@@ -38,23 +38,24 @@ function extractOverridesRecursively(obj: any): Record<string, any> {
 function setOverridesRecursively(obj: any, overridesMap: Record<string, any>): void {
   for (const [path, value] of Object.entries(overridesMap)) {
     const pathParts = path === '' ? [] : path.split('.');
-    let current = obj;
+    let current: Record<string, unknown> = obj as Record<string, unknown>;
 
     // Navigate to the parent object, creating objects as needed
     for (const part of pathParts) {
       if (
-        !current[part] ||
+        current[part] === undefined ||
+        current[part] === null ||
         typeof current[part] !== 'object' ||
         Array.isArray(current[part])
       ) {
         current[part] = {};
       }
-      current = current[part];
+      current = current[part] as Record<string, unknown>;
     }
 
     // Set the overrides property only if current is an object
-    if (current && typeof current === 'object' && !Array.isArray(current)) {
-      current.overrides = { ...value };
+    if (typeof current === 'object' && !Array.isArray(current)) {
+      current['overrides'] = { ...value };
     }
   }
 }
@@ -86,7 +87,7 @@ function mergeOptions<T extends object>(target: T, ...sources: T[]): T {
 
   // Apply rules from each source with shallow merge
   for (const source of sources) {
-    if (!source) {
+    if (source == null) {
       // eslint-disable-next-line no-continue
       continue;
     }
@@ -114,21 +115,21 @@ function mergeOptions<T extends object>(target: T, ...sources: T[]): T {
 
   // Apply overrides from each source
   for (const source of sources) {
-    if (!source) {
+    if (source == null) {
       // eslint-disable-next-line no-continue
       continue;
     }
 
     const sourceOverrides = extractOverridesRecursively(source);
     for (const [path, overrides] of Object.entries(sourceOverrides)) {
-      if (allOverrides[path]) {
+      if (typeof allOverrides[path] !== 'undefined') {
         // Shallow merge overrides
         allOverrides[path] = {
-          ...allOverrides[path],
-          ...overrides,
+          ...(allOverrides[path] as Record<string, unknown>),
+          ...(overrides as Record<string, unknown>),
         };
       } else {
-        allOverrides[path] = { ...overrides };
+        allOverrides[path] = { ...(overrides as Record<string, unknown>) };
       }
     }
   }

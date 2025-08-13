@@ -2,7 +2,7 @@
   "name": "@pixpilot/eslint-test-utils",
   "type": "module",
   "version": "0.3.0",
-  "packageManager": "pnpm@10.12.2",
+  "packageManager": "pnpm@10.14.0",
   "author": "m.doaie <m.doaie@hotmail.com> (https://github.com/ccpu)",
   "license": "MIT",
   "repository": {
@@ -41,6 +41,9 @@
   },
   "peerDependencies": {
     "eslint": "^9.10.0"
+  },
+  "dependencies": {
+    "@fastify/deepmerge": "catalog:prod"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",

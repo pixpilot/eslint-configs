@@ -23,7 +23,6 @@
     "fix:all": "pnpm format:fix && pnpm lint:fix && pnpm typecheck",
     "postinstall": "pnpm lint:ws",
     "test": "turbo run test",
-    "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
     "typecheck": "turbo run typecheck",
     "clean:packages": "node scripts/cleanup-node-modules.js",
