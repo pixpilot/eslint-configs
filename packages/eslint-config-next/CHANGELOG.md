@@ -1,5 +1,11 @@
 # @pixpilot/eslint-config-next
 
+## 0.0.8
+
+### Patch Changes
+
+- Added \ o-magic-numbers\ rule to the test file configurations
+
 ## 0.0.7
 
 ### Patch Changes
