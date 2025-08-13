@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.4.0
+
+### Minor Changes
+
+- update TypeScript configuration and improve ESLint rules
+
 ## 2.3.0
 
 ### Minor Changes
