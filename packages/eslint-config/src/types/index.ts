@@ -1,10 +1,29 @@
 import type config from '@pixpilot/antfu-eslint-config';
+import type {
+  Awaitable,
+  OptionsConfig,
+  TypedFlatConfigItem,
+} from '@pixpilot/antfu-eslint-config';
+import type { Linter } from 'eslint';
+import type { FlatConfigComposer } from 'eslint-flat-config-utils';
 
 type ConfigOptionsBase = NonNullable<Parameters<ConfigFuncType>[0]>;
 
 export type ConfigFuncType = typeof config;
 
-export type ConfigOptions = ConfigOptionsBase & {
-  prettier?: boolean;
-  test?: ConfigOptionsBase['test'] & { relaxed?: boolean };
-};
+export type ConfigOptions = OptionsConfig &
+  Omit<TypedFlatConfigItem, 'files'> & {
+    prettier?: boolean;
+    test?: ConfigOptionsBase['test'] & { relaxed?: boolean };
+  };
+
+export type UserConfig = Awaitable<
+  | TypedFlatConfigItem
+  | TypedFlatConfigItem[]
+  | FlatConfigComposer<any, any>
+  | Linter.Config[]
+>;
+
+export type UserConfigs = UserConfig[];
+
+export type { TypedFlatConfigItem };

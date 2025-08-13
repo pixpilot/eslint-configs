@@ -3,7 +3,7 @@ import type { ConfigOptions } from '../src/types';
 import { eslintRulesTestRunner } from '@pixpilot/eslint-test-utils';
 import { ESLint } from 'eslint';
 import { describe, expect, it } from 'vitest';
-import configFunc from '../src/config';
+import configFunc from '../src/factory';
 
 describe('configFunc', () => {
   it('should return a config object when called', async () => {

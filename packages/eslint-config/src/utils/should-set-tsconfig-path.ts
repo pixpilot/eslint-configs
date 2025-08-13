@@ -7,7 +7,11 @@ import type { ConfigOptions } from '../types';
 export function shouldSetTsconfigPath(options: ConfigOptions): boolean {
   if (options.typescript === false) return false;
 
-  if (typeof options.typescript === 'object' && 'tsconfigPath' in options.typescript) {
+  if (
+    typeof options.typescript === 'object' &&
+    options.typescript !== null &&
+    'tsconfigPath' in options.typescript
+  ) {
     if (options.typescript.tsconfigPath !== undefined) return false;
   }
 

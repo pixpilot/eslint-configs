@@ -57,6 +57,7 @@
     "@pixpilot/dev-config": "catalog:dev",
     "@pixpilot/eslint-test-utils": "workspace:*",
     "@types/node": "catalog:dev",
+    "eslint-flat-config-utils": "^2.1.1",
     "rollup": "catalog:dev"
   }
 }

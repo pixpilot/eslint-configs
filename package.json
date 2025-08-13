@@ -25,8 +25,6 @@
     "test": "turbo run test",
     "test:coverage": "vitest run --coverage",
     "typecheck": "turbo run typecheck",
-    "clean:packages": "node scripts/cleanup-node-modules.js",
-    "clean:packages:install": "pnpm clean:packages && pnpm install",
     "clean:workspaces": "turbo run clean",
     "clean:workspaces:install": "pnpm clean:workspaces && pnpm install",
     "turbo:gen:init": "pnpm turbo gen init",
