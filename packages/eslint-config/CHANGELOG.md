@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.4.1
+
+### Patch Changes
+
+- 466f631: release
+
 ## 2.4.0
 
 ### Minor Changes
