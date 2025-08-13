@@ -1,5 +1,11 @@
 # @pixpilot/eslint-config-react
 
+## 0.2.6
+
+### Patch Changes
+
+- improved factory and fixed test relaxation rules
+
 ## 0.2.5
 
 ### Patch Changes
