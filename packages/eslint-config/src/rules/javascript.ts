@@ -1,6 +1,6 @@
-import type { UserConfig } from '../types';
+import type { UserOption } from '../types';
 
-export const jsOverrideRules: UserConfig = {
+export const jsOverrideRules: UserOption = {
   rules: {
     // ...existing code...
     'arrow-body-style': [

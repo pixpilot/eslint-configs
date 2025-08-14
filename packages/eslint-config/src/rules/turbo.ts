@@ -1,7 +1,7 @@
-import type { UserConfig } from '../types';
+import type { UserOption } from '../types';
 import turboPlugin from 'eslint-plugin-turbo';
 
-export const turboConfigs: UserConfig = {
+export const turboConfigs: UserOption = {
   files: ['**/*.js', '**/*.ts', '**/*.tsx'],
   plugins: {
     turbo: turboPlugin,

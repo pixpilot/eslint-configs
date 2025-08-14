@@ -11,6 +11,15 @@ type ConfigOptionsBase = NonNullable<Parameters<ConfigFuncType>[0]>;
 
 export type ConfigFuncType = typeof config;
 
+export type UserConfigs = Awaitable<
+  | TypedFlatConfigItem
+  | TypedFlatConfigItem[]
+  | FlatConfigComposer<any, any>
+  | Linter.Config[]
+>[];
+
+export type ReturnTypeOfConfigFunc = ReturnType<ConfigFuncType>;
+
 export type ConfigOptions = OptionsConfig &
   Omit<TypedFlatConfigItem, 'files'> & {
     prettier?: boolean;
@@ -18,13 +27,13 @@ export type ConfigOptions = OptionsConfig &
     turbo?: boolean;
   };
 
-export type UserConfig = Awaitable<
+export type UserOption = Awaitable<
   | TypedFlatConfigItem
   | TypedFlatConfigItem[]
   | FlatConfigComposer<any, any>
   | Linter.Config[]
 >;
 
-export type UserConfigs = UserConfig[];
+export type UserOptions = UserOption[];
 
 export type { TypedFlatConfigItem };

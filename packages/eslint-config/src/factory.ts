@@ -1,8 +1,10 @@
 import type {
   ConfigFuncType,
   ConfigOptions,
+  ReturnTypeOfConfigFunc,
   TypedFlatConfigItem,
-  UserConfig,
+  UserConfigs,
+  UserOption,
 } from './types';
 
 // Use require to import process to avoid using the global variable directly
@@ -18,8 +20,11 @@ import { turboConfigs } from './rules/turbo';
 import { resolveOptions } from './utils/resolve-options';
 
 // eslint-disable-next-line ts/promise-function-async
-const configFunc: ConfigFuncType = (op, ...rest) => {
-  const options: ConfigOptions = {
+function configFunc(
+  options?: ConfigOptions,
+  ...userConfigs: UserConfigs
+): ReturnTypeOfConfigFunc {
+  const defaultOptions: ConfigOptions = {
     jsonc: true,
     yaml: true,
     gitignore: true,
@@ -36,45 +41,45 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
   };
 
   // Use the new utility function to resolve options
-  const mergedOptions = resolveOptions(options, op);
+  const mergedOptions = resolveOptions(defaultOptions, options || {});
   const { prettier, test, ...antfuEslintOptions } = mergedOptions;
 
-  const userConfigs: UserConfig[] = [];
+  const mergedUserConfigs: UserOption[] = [];
 
   // Add JS override rules
-  userConfigs.push(jsOverrideRules);
+  mergedUserConfigs.push(jsOverrideRules);
 
   if (mergedOptions.typescript !== undefined && mergedOptions.typescript !== false) {
     // Add TS override rules
-    userConfigs.push(tsOverrideRules);
+    mergedUserConfigs.push(tsOverrideRules);
 
     // Add TSX override rules
-    userConfigs.push(tsxOverrideRules);
+    mergedUserConfigs.push(tsxOverrideRules);
   }
 
   if (test) {
     if (test.relaxed === true) {
       // Relaxed test rules
-      userConfigs.push(testOverrideRules);
+      mergedUserConfigs.push(testOverrideRules);
     }
   }
 
   if (mergedOptions.prettier) {
-    userConfigs.push(prettierConfig);
+    mergedUserConfigs.push(prettierConfig);
   }
 
   if (mergedOptions.turbo) {
-    userConfigs.push(turboConfigs);
+    mergedUserConfigs.push(turboConfigs);
   }
 
   const configurations = config(
     antfuEslintOptions,
-    ...(userConfigs as TypedFlatConfigItem[]),
-    ...rest,
+    ...(mergedUserConfigs as TypedFlatConfigItem[]),
+    ...userConfigs,
   );
 
   return configurations;
-};
+}
 
 export default configFunc;
 

@@ -1,4 +1,9 @@
-import type { ConfigFuncType, ConfigOptions, Rules } from '@pixpilot/eslint-config';
+import type {
+  ConfigOptions,
+  ReturnTypeOfConfigFunc,
+  Rules,
+  UserConfigs,
+} from '@pixpilot/eslint-config';
 import config, { jsOverrideRules, mergeOptions } from '@pixpilot/eslint-config';
 import jsxA11yRulesOverride from './jsx-a11y-overrides';
 import reactRulesOverride from './react-rules-overrides';
@@ -9,7 +14,10 @@ const baseDangleRule = (jsOverrideRules as { rules: Rules }).rules[
 ];
 
 // eslint-disable-next-line ts/promise-function-async
-const configFunc: ConfigFuncType = (op, ...rest) => {
+function configFunc(
+  userOptions?: ConfigOptions,
+  ...userConfigs: UserConfigs
+): ReturnTypeOfConfigFunc {
   const options: ConfigOptions = {
     react: {
       overrides: reactRulesOverride,
@@ -22,7 +30,7 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
     },
   };
 
-  const baseConfig = config(mergeOptions(options, op || {}), ...rest);
+  const baseConfig = config(mergeOptions(options, userOptions || {}), ...userConfigs);
 
   // Create React-specific rule overrides by extending base rules
   const reactRuleOverrides = {
@@ -51,6 +59,6 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
 
   // Append the React-specific overrides to ensure they take precedence
   return baseConfig.append([reactRuleOverrides]);
-};
+}
 
 export default configFunc;

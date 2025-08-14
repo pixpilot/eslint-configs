@@ -1,7 +1,7 @@
-import type { UserConfig } from '../types';
+import type { UserOption } from '../types';
 import { GLOB_TESTS } from '@pixpilot/antfu-eslint-config';
 
-export const testOverrideRules: UserConfig = {
+export const testOverrideRules: UserOption = {
   files: [
     ...GLOB_TESTS,
     '**/test/**/*',

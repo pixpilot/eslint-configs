@@ -1,7 +1,7 @@
-import type { UserConfig } from '../types';
+import type { UserOption } from '../types';
 import { GLOB_TS, GLOB_TSX } from '@pixpilot/antfu-eslint-config';
 
-export const tsOverrideRules: UserConfig = {
+export const tsOverrideRules: UserOption = {
   files: [GLOB_TS, GLOB_TSX],
   rules: {
     'ts/default-param-last': ['error'],
@@ -19,7 +19,7 @@ export const tsOverrideRules: UserConfig = {
   },
 };
 
-export const tsxOverrideRules: UserConfig = {
+export const tsxOverrideRules: UserOption = {
   files: [GLOB_TSX],
   rules: {
     'ts/explicit-module-boundary-types': 'off',
