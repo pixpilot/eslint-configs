@@ -1,5 +1,13 @@
 # @pixpilot/eslint-config-next
 
+## 0.0.14
+
+### Patch Changes
+
+- update usage instructions to reflect `eslint.config.mjs`
+- Updated dependencies
+  - @pixpilot/eslint-config-react@0.2.9
+
 ## 0.0.13
 
 ### Patch Changes
