@@ -4,7 +4,7 @@ This ESLint configuration provides recommended rules and settings for React proj
 
 ## Usage
 
-Add to your `eslint.config.js` or `eslint.config.ts`:
+Add to your `eslint.config.mjs`:
 
 ```js
 import config from '@pixpilot/eslint-config-react';
