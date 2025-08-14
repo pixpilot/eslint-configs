@@ -1,5 +1,12 @@
 # @pixpilot/eslint-config-react
 
+## 0.2.12
+
+### Patch Changes
+
+- Updated dependencies [ef4e203]
+  - @pixpilot/eslint-config@2.5.1
+
 ## 0.2.11
 
 ### Patch Changes
