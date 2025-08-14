@@ -40,7 +40,13 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "peerDependencies": {
-    "eslint": "^9.10.0"
+    "eslint": "^9.10.0",
+    "eslint-plugin-turbo": "^2.5.5"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-turbo": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@fastify/deepmerge": "catalog:prod",
@@ -58,6 +64,7 @@
     "@pixpilot/eslint-test-utils": "workspace:*",
     "@types/node": "catalog:dev",
     "eslint-flat-config-utils": "^2.1.1",
+    "eslint-plugin-turbo": "^2.5.5",
     "rollup": "catalog:dev"
   }
 }

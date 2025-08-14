@@ -15,6 +15,7 @@ export type ConfigOptions = OptionsConfig &
   Omit<TypedFlatConfigItem, 'files'> & {
     prettier?: boolean;
     test?: ConfigOptionsBase['test'] & { relaxed?: boolean };
+    turbo?: boolean;
   };
 
 export type UserConfig = Awaitable<

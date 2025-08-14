@@ -29,7 +29,7 @@
     "clean:workspaces:install": "pnpm clean:workspaces && pnpm install",
     "turbo:gen:init": "pnpm turbo gen init",
     "deps:update": "npx taze -r -w && pnpm install",
-    "deps:update:major": "npx taze major -r -w && pnpm install",
+    "deps:update:major": "npx taze major -r -w&& pnpm install",
     "changeset": "changeset"
   },
   "devDependencies": {

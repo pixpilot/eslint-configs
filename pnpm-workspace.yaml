@@ -6,7 +6,7 @@ catalogs:
   dev:
     '@commitlint/cli': ^19.8.1
     '@commitlint/config-conventional': ^19.8.1
-    '@pixpilot/dev-config': ^2.1.0
+    '@pixpilot/dev-config': ^3.0.0
     '@pixpilot/workspace-package-generator': ^1.0.3
     '@rollup/plugin-terser': ^0.4.4
     '@rollup/plugin-typescript': ^12.1.4

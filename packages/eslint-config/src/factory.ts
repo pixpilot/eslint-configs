@@ -14,6 +14,7 @@ import {
   tsxOverrideRules,
 } from './rules';
 import { prettierConfig } from './rules/prettier';
+import { turboConfigs } from './rules/turbo';
 import { resolveOptions } from './utils/resolve-options';
 
 // eslint-disable-next-line ts/promise-function-async
@@ -60,6 +61,10 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
 
   if (mergedOptions.prettier) {
     userConfigs.push(prettierConfig);
+  }
+
+  if (mergedOptions.turbo) {
+    userConfigs.push(turboConfigs);
   }
 
   const configurations = config(
