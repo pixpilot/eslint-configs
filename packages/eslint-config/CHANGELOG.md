@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.5.0
+
+### Minor Changes
+
+- update @pixpilot/dev-config to version 3.0.0 in pnpm-workspace.yaml
+
 ## 2.4.3
 
 ### Patch Changes
