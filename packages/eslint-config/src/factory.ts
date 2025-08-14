@@ -43,11 +43,13 @@ const configFunc: ConfigFuncType = (op, ...rest) => {
   // Add JS override rules
   userConfigs.push(jsOverrideRules);
 
-  // Add TS override rules
-  userConfigs.push(tsOverrideRules);
+  if (mergedOptions.typescript !== undefined && mergedOptions.typescript !== false) {
+    // Add TS override rules
+    userConfigs.push(tsOverrideRules);
 
-  // Add specific TS rules for TSX files
-  userConfigs.push(tsxOverrideRules);
+    // Add TSX override rules
+    userConfigs.push(tsxOverrideRules);
+  }
 
   if (test) {
     if (test.relaxed === true) {
