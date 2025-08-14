@@ -1,5 +1,11 @@
 # @pixpilot/eslint-config-react
 
+## 0.2.11
+
+### Patch Changes
+
+- update config function signatures and types
+
 ## 0.2.10
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @pixpilot/eslint-config-next
 
+## 0.0.16
+
+### Patch Changes
+
+- update config function signatures and types
+- Updated dependencies
+  - @pixpilot/eslint-config-react@0.2.11
+
 ## 0.0.15
 
 ### Patch Changes
