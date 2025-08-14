@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.4.3
+
+### Patch Changes
+
+- conditionally add TypeScript and TSX override rules
+
 ## 2.4.2
 
 ### Patch Changes
