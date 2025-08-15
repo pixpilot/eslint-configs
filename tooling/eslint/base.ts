@@ -1,10 +1,9 @@
-import turboPlugin from 'eslint-plugin-turbo';
-
 import config from '../../packages/eslint-config/src/factory';
 
 const baseConfig: ReturnType<typeof config> = config(
   {
     pnpm: true,
+    turbo: true,
     stylistic: {
       semi: true,
       quotes: 'single',
@@ -13,12 +12,6 @@ const baseConfig: ReturnType<typeof config> = config(
   {
     rules: {
       'pnpm/json-enforce-catalog': 'off',
-    },
-  },
-  {
-    files: ['**/*.js', '**/*.ts', '**/*.tsx'],
-    plugins: {
-      turbo: turboPlugin,
     },
   },
 );
