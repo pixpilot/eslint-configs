@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.5.1
+
+### Patch Changes
+
+- ef4e203: release
+
 ## 2.5.0
 
 ### Minor Changes
