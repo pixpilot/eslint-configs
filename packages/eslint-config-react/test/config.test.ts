@@ -1,11 +1,11 @@
 import type { TestFixture } from '@pixpilot/eslint-test-utils';
 import { eslintRulesTestRunner } from '@pixpilot/eslint-test-utils';
 import { describe } from 'vitest';
-import configFunc from '../src/config';
+import defineConfig from '../src/config';
 
 // Async wrapper to match expected signature
 async function createTypedConfig(options: Partial<Record<string, boolean>>) {
-  return configFunc(options);
+  return defineConfig(options);
 }
 
 const reactRuleFixture: TestFixture[] = [

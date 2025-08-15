@@ -1,3 +1,5 @@
+import type { Awaitable } from 'eslint-flat-config-utils';
+
 import type {
   ConfigFuncType,
   ConfigOptions,
@@ -5,7 +7,6 @@ import type {
   TypedFlatConfigItem,
   UserConfigs,
 } from './types';
-
 // Use require to import process to avoid using the global variable directly
 import config from '@pixpilot/antfu-eslint-config';
 import {
@@ -18,10 +19,11 @@ import {
 } from './rules';
 import { resolveOptions } from './utils/resolve-options';
 
-async function configFunc(
+// eslint-disable-next-line ts/promise-function-async
+export function defineConfig(
   options?: ConfigOptions,
   ...userConfigs: UserConfigs
-): Promise<ReturnTypeOfConfigFunc> {
+): ReturnTypeOfConfigFunc {
   const defaultOptions: ConfigOptions = {
     jsonc: true,
     yaml: true,
@@ -42,31 +44,31 @@ async function configFunc(
   const mergedOptions = resolveOptions(defaultOptions, options || {});
   const { prettier, test, ...antfuEslintOptions } = mergedOptions;
 
-  const mergedUserConfigs: TypedFlatConfigItem[] = [];
+  const mergedUserConfigs: Awaitable<TypedFlatConfigItem[]>[] = [];
 
   // Add JS override rules
-  mergedUserConfigs.push(...(await javascriptConfigs()));
+  mergedUserConfigs.push(javascriptConfigs());
 
   if (mergedOptions.typescript !== undefined && mergedOptions.typescript !== false) {
     // Add TS override rules
-    mergedUserConfigs.push(...(await typescriptConfigs()));
+    mergedUserConfigs.push(typescriptConfigs());
     // Add TSX override rules
-    mergedUserConfigs.push(...(await tsxConfigs()));
+    mergedUserConfigs.push(tsxConfigs());
   }
 
   if (test) {
     if (test.relaxed === true) {
       // Relaxed test rules
-      mergedUserConfigs.push(...(await testConfigs()));
+      mergedUserConfigs.push(testConfigs());
     }
   }
 
   if (mergedOptions.prettier) {
-    mergedUserConfigs.push(...(await prettierConfigs()));
+    mergedUserConfigs.push(prettierConfigs());
   }
 
   if (mergedOptions.turbo) {
-    mergedUserConfigs.push(...(await turboConfigs()));
+    mergedUserConfigs.push(turboConfigs());
   }
 
   const configurations = config(antfuEslintOptions, ...mergedUserConfigs, ...userConfigs);
@@ -74,6 +76,6 @@ async function configFunc(
   return configurations;
 }
 
-export default configFunc;
+export default defineConfig;
 
 export type { ConfigFuncType, ConfigOptions };

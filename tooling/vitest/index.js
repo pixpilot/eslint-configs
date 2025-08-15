@@ -8,7 +8,7 @@ export default defineConfig({
     include: ['**/*.test.ts', 'test/**/*.test.ts', 'packages/**/test/**/*.test.ts'],
     exclude: ['**/node_modules/**', '**/dist/**'],
     coverage: {
-      reporter: ['text', 'json', 'html'],
+      reporter: ['text-summary', 'json', 'html'],
       include: ['packages/*/src/**/*.ts'], // Match all src files in all packages
     },
   },

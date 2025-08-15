@@ -3,11 +3,11 @@ import type { ConfigOptions } from '../src/types';
 import { eslintRulesTestRunner } from '@pixpilot/eslint-test-utils';
 import { ESLint } from 'eslint';
 import { describe, expect, it } from 'vitest';
-import configFunc from '../src/factory';
+import defineConfig from '../src/factory';
 
 describe('configFunc', () => {
   it('should return a config object when called', async () => {
-    const result = configFunc({});
+    const result = defineConfig({});
     expect(result).toBeDefined();
     expect(typeof result).toBe('object');
     // Should be a promise-like object
@@ -24,7 +24,7 @@ describe('configFunc', () => {
       jsonc: false,
       unicorn: false,
     };
-    const result = configFunc(userOptions);
+    const result = defineConfig(userOptions);
     expect(result).toBeDefined();
 
     const resolved = await result;
@@ -229,7 +229,7 @@ console.log('test');
       ...options,
     };
 
-    return configFunc(categoryOverrides);
+    return defineConfig(categoryOverrides);
   }
 
   // Use the generic test runner

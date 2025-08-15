@@ -23,7 +23,7 @@
     "fix:all": "pnpm format:fix && pnpm lint:fix && pnpm typecheck",
     "postinstall": "pnpm lint:ws",
     "test": "turbo run test",
-    "test:coverage": "vitest run --coverage",
+    "test:coverage": "vitest run --coverage --config tooling/vitest",
     "typecheck": "turbo run typecheck",
     "clean:workspaces": "turbo run clean",
     "clean:workspaces:install": "pnpm clean:workspaces && pnpm install",
