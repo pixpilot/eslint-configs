@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.6.0
+
+### Minor Changes
+
+- refactor config functions to remove async and improve performance
+
 ## 2.5.1
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @pixpilot/eslint-config-react
 
+## 0.4.0
+
+### Minor Changes
+
+- refactor config functions to remove async and improve performance
+
+### Patch Changes
+
+- Updated dependencies
+  - @pixpilot/eslint-config@2.6.0
+
 ## 0.3.0
 
 ### Minor Changes
