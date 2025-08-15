@@ -1,5 +1,11 @@
 # @pixpilot/eslint-config-react
 
+## 0.3.0
+
+### Minor Changes
+
+- refactor config functions to return promises
+
 ## 0.2.12
 
 ### Patch Changes
