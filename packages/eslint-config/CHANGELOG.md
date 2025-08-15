@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.6.1
+
+### Patch Changes
+
+- update `eslint-plugin-turbo` dependency to use catalog reference
+
 ## 2.6.0
 
 ### Minor Changes
