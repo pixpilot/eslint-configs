@@ -4,26 +4,24 @@ import type {
   ReturnTypeOfConfigFunc,
   TypedFlatConfigItem,
   UserConfigs,
-  UserOption,
 } from './types';
 
 // Use require to import process to avoid using the global variable directly
 import config from '@pixpilot/antfu-eslint-config';
 import {
-  jsOverrideRules,
-  testOverrideRules,
-  tsOverrideRules,
-  tsxOverrideRules,
+  javascriptConfigs,
+  prettierConfigs,
+  testConfigs,
+  tsxConfigs,
+  turboConfigs,
+  typescriptConfigs,
 } from './rules';
-import { prettierConfig } from './rules/prettier';
-import { turboConfigs } from './rules/turbo';
 import { resolveOptions } from './utils/resolve-options';
 
-// eslint-disable-next-line ts/promise-function-async
-function configFunc(
+async function configFunc(
   options?: ConfigOptions,
   ...userConfigs: UserConfigs
-): ReturnTypeOfConfigFunc {
+): Promise<ReturnTypeOfConfigFunc> {
   const defaultOptions: ConfigOptions = {
     jsonc: true,
     yaml: true,
@@ -44,39 +42,34 @@ function configFunc(
   const mergedOptions = resolveOptions(defaultOptions, options || {});
   const { prettier, test, ...antfuEslintOptions } = mergedOptions;
 
-  const mergedUserConfigs: UserOption[] = [];
+  const mergedUserConfigs: TypedFlatConfigItem[] = [];
 
   // Add JS override rules
-  mergedUserConfigs.push(jsOverrideRules);
+  mergedUserConfigs.push(...(await javascriptConfigs()));
 
   if (mergedOptions.typescript !== undefined && mergedOptions.typescript !== false) {
     // Add TS override rules
-    mergedUserConfigs.push(tsOverrideRules);
-
+    mergedUserConfigs.push(...(await typescriptConfigs()));
     // Add TSX override rules
-    mergedUserConfigs.push(tsxOverrideRules);
+    mergedUserConfigs.push(...(await tsxConfigs()));
   }
 
   if (test) {
     if (test.relaxed === true) {
       // Relaxed test rules
-      mergedUserConfigs.push(testOverrideRules);
+      mergedUserConfigs.push(...(await testConfigs()));
     }
   }
 
   if (mergedOptions.prettier) {
-    mergedUserConfigs.push(prettierConfig);
+    mergedUserConfigs.push(...(await prettierConfigs()));
   }
 
   if (mergedOptions.turbo) {
-    mergedUserConfigs.push(turboConfigs);
+    mergedUserConfigs.push(...(await turboConfigs()));
   }
 
-  const configurations = config(
-    antfuEslintOptions,
-    ...(mergedUserConfigs as TypedFlatConfigItem[]),
-    ...userConfigs,
-  );
+  const configurations = config(antfuEslintOptions, ...mergedUserConfigs, ...userConfigs);
 
   return configurations;
 }

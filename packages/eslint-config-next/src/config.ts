@@ -5,11 +5,10 @@ import type {
 } from '@pixpilot/eslint-config-react';
 import config, { mergeOptions } from '@pixpilot/eslint-config-react';
 
-// eslint-disable-next-line ts/promise-function-async
-function configFunc(
+async function configFunc(
   userOptions?: ConfigOptions,
   ...userConfigs: UserConfigs
-): ReturnTypeOfConfigFunc {
+): Promise<ReturnTypeOfConfigFunc> {
   const defaultOptions: ConfigOptions = {
     type: 'app',
     nextjs: true,

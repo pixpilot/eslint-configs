@@ -1,23 +1,17 @@
 import type {
   ConfigOptions,
   ReturnTypeOfConfigFunc,
-  Rules,
+  TypedFlatConfigItem,
   UserConfigs,
 } from '@pixpilot/eslint-config';
-import config, { jsOverrideRules, mergeOptions } from '@pixpilot/eslint-config';
+import config, { javascriptConfigs, mergeOptions } from '@pixpilot/eslint-config';
 import jsxA11yRulesOverride from './jsx-a11y-overrides';
 import reactRulesOverride from './react-rules-overrides';
 
-// Get the base no-underscore-dangle rule configuration
-const baseDangleRule = (jsOverrideRules as { rules: Rules }).rules[
-  'no-underscore-dangle'
-];
-
-// eslint-disable-next-line ts/promise-function-async
-function configFunc(
+async function configFunc(
   userOptions?: ConfigOptions,
   ...userConfigs: UserConfigs
-): ReturnTypeOfConfigFunc {
+): Promise<ReturnTypeOfConfigFunc> {
   const options: ConfigOptions = {
     react: {
       overrides: reactRulesOverride,
@@ -29,36 +23,55 @@ function configFunc(
       },
     },
   };
+  // Get the base no-underscore-dangle rule configuration
+  const javascriptConf = await javascriptConfigs();
 
-  const baseConfig = config(mergeOptions(options, userOptions || {}), ...userConfigs);
+  const baseDangleRule = javascriptConf.find(
+    (item): boolean =>
+      typeof item.rules !== 'undefined' &&
+      typeof item.rules['no-underscore-dangle'] !== 'undefined',
+  );
 
-  // Create React-specific rule overrides by extending base rules
-  const reactRuleOverrides = {
-    rules: {
-      ...(baseDangleRule !== undefined && {
+  const mergedUserConfigs: TypedFlatConfigItem[] = [
+    {
+      rules: {
         'no-underscore-dangle':
-          Array.isArray(baseDangleRule) && baseDangleRule.length > 1
+          baseDangleRule && Array.isArray(baseDangleRule.rules?.['no-underscore-dangle'])
             ? [
-                baseDangleRule[0], // Keep the same severity level
+                baseDangleRule.rules['no-underscore-dangle'][0], // severity
                 {
-                  ...(typeof baseDangleRule[1] === 'object' && baseDangleRule[1] !== null
-                    ? baseDangleRule[1]
+                  ...(typeof baseDangleRule.rules['no-underscore-dangle'][1] ===
+                    'object' && baseDangleRule.rules['no-underscore-dangle'][1] !== null
+                    ? baseDangleRule.rules['no-underscore-dangle'][1]
                     : {}),
                   allow: [
-                    ...(Array.isArray(baseDangleRule[1]?.allow)
-                      ? baseDangleRule[1].allow
+                    ...(Array.isArray(
+                      baseDangleRule.rules['no-underscore-dangle'][1]?.allow,
+                    )
+                      ? baseDangleRule.rules['no-underscore-dangle'][1].allow
                       : []),
                     '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__',
                   ],
                 },
               ]
-            : baseDangleRule,
-      }),
-    } satisfies Rules,
-  };
+            : (baseDangleRule?.rules?.['no-underscore-dangle'] ?? [
+                2,
+                { allow: ['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] },
+              ]),
+      },
+    },
+  ];
+
+  const baseConfig = await config(
+    mergeOptions(options, userOptions || {}),
+    ...userConfigs,
+    ...mergedUserConfigs,
+  );
+
+  // Create React-specific rule overrides by extending base rules
 
   // Append the React-specific overrides to ensure they take precedence
-  return baseConfig.append([reactRuleOverrides]);
+  return baseConfig;
 }
 
 export default configFunc;
