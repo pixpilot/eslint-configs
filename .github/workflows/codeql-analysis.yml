@@ -1,4 +1,4 @@
-name: 'CodeQL'
+name: 'CodeQL Analyser'
 
 permissions:
   security-events: write
@@ -31,10 +31,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run CodeQL Analysis
-        uses: pixpilot/github/actions/codeql-analysis@main
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
         with:
           config-file: .github/codeql/codeql-configuration.yml
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
 # -------------------------------------------------------------
 # Alternative: Reusable workflow for code scanning
 # -------------------------------------------------------------
@@ -49,7 +55,8 @@ jobs:
 #       - name: Checkout repository
 #         uses: actions/checkout@v4
 
-#       - name: Initialize CodeQL
-#         uses: pixpilot/github/actions/codeql-issue-maker@main
+#       - name: CodeQL Analysis Reporter
+#         uses: pixpilot/github/actions/codeql-analysis-reporter@main
 #         with:
 #           token: ${{ secrets.GITHUB_TOKEN }}
+#           config-file: .github/codeql/codeql-config.yml
