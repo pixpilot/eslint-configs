@@ -42,7 +42,7 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
 # -------------------------------------------------------------
-# Alternative: Reusable workflow for code scanning
+# Alternative: pixpilot/codeql-scanner@main
 # -------------------------------------------------------------
 # Use this ONLY if your repo is private.
 # The official CodeQL workflow (see above) is always preferred for security and
@@ -55,8 +55,8 @@ jobs:
 #       - name: Checkout repository
 #         uses: actions/checkout@v4
 
-#       - name: Perform CodeQL Analysis
-#         uses: pixpilot/github/actions/codeql-analyzer@main
+#       - name: Run CodeQL Scanner
+#         uses: pixpilot/codeql-scanner@main
 #         with:
 #           token: ${{ secrets.GITHUB_TOKEN }}
 #           config-file: .github/codeql/codeql-config.yml
