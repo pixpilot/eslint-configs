@@ -13,8 +13,8 @@ catalogs:
       specifier: ^19.8.1
       version: 19.8.1
     '@pixpilot/dev-config':
-      specifier: ^3.0.0
-      version: 3.0.0
+      specifier: ^3.1.0
+      version: 3.1.0
     '@pixpilot/workspace-package-generator':
       specifier: ^1.0.3
       version: 1.0.3
@@ -99,7 +99,7 @@ importers:
         version: link:tooling/prettier
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.0.0(prettier@3.6.2)(typescript@5.9.2)
+        version: 3.1.0(prettier@3.6.2)(typescript@5.9.2)
       '@pixpilot/workspace-package-generator':
         specifier: catalog:dev
         version: 1.0.3
@@ -178,7 +178,7 @@ importers:
         version: link:../../tooling/vitest
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.0.0(prettier@3.6.2)(typescript@5.9.2)
+        version: 3.1.0(prettier@3.6.2)(typescript@5.9.2)
       '@pixpilot/eslint-test-utils':
         specifier: workspace:*
         version: link:../eslint-test-utils
@@ -221,7 +221,7 @@ importers:
         version: link:../../tooling/vitest
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.0.0(prettier@3.6.2)(typescript@5.9.2)
+        version: 3.1.0(prettier@3.6.2)(typescript@5.9.2)
       '@pixpilot/eslint-test-utils':
         specifier: workspace:*
         version: link:../eslint-test-utils
@@ -270,7 +270,7 @@ importers:
         version: link:../../tooling/vitest
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.0.0(prettier@3.6.2)(typescript@5.9.2)
+        version: 3.1.0(prettier@3.6.2)(typescript@5.9.2)
       '@pixpilot/eslint-test-utils':
         specifier: workspace:*
         version: link:../eslint-test-utils
@@ -307,7 +307,7 @@ importers:
         version: link:../../tooling/vitest
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.0.0(prettier@3.6.2)(typescript@5.9.2)
+        version: 3.1.0(prettier@3.6.2)(typescript@5.9.2)
       '@types/node':
         specifier: catalog:dev
         version: 24.2.1
@@ -322,7 +322,7 @@ importers:
         version: link:../typescript
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.0.0(prettier@3.6.2)(typescript@5.9.2)
+        version: 3.1.0(prettier@3.6.2)(typescript@5.9.2)
       eslint-plugin-jest:
         specifier: catalog:eslint
         version: 29.0.1(@typescript-eslint/eslint-plugin@8.39.1(@typescript-eslint/parser@8.39.1(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))(jest@30.0.4(@types/node@24.2.1)(ts-node@10.9.2(@types/node@24.2.1)(typescript@5.9.2)))(typescript@5.9.2)
@@ -347,7 +347,7 @@ importers:
     dependencies:
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.0.0(prettier@3.6.2)(typescript@5.9.2)
+        version: 3.1.0(prettier@3.6.2)(typescript@5.9.2)
       prettier:
         specifier: catalog:dev
         version: 3.6.2
@@ -378,7 +378,7 @@ importers:
         version: link:../typescript
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.0.0(prettier@3.6.2)(typescript@5.9.2)
+        version: 3.1.0(prettier@3.6.2)(typescript@5.9.2)
       '@rollup/plugin-node-resolve':
         specifier: ^16.0.1
         version: 16.0.1(rollup@4.46.2)
@@ -405,7 +405,7 @@ importers:
     devDependencies:
       '@pixpilot/dev-config':
         specifier: catalog:dev
-        version: 3.0.0(prettier@3.6.2)(typescript@5.9.2)
+        version: 3.1.0(prettier@3.6.2)(typescript@5.9.2)
       '@types/node':
         specifier: catalog:dev
         version: 24.2.1
@@ -1269,8 +1269,8 @@ packages:
       vue-eslint-parser:
         optional: true
 
-  '@pixpilot/dev-config@3.0.0':
-    resolution: {integrity: sha512-Vr7TxPc96DU+yVQvADknPfyO7MJ5LeXzAWI7Z9b5j5DQlLBC8IFO8WIsU7Kjp3quKW8rQdZfx+8KZUX3HgBlHA==}
+  '@pixpilot/dev-config@3.1.0':
+    resolution: {integrity: sha512-J+fZHqITbOVrtgaJU8Yjdewk0ocKbGCKA40TtV/qyFBoddrATLBekT+r+KkS2Ln3RlLRaS6YkAIS1KgbWHwlCw==}
     engines: {node: '>=20', pnpm: '>=9.6.0'}
     peerDependencies:
       prettier: '>=3.6.0'
@@ -6422,7 +6422,7 @@ snapshots:
       - typescript
       - vitest
 
-  '@pixpilot/dev-config@3.0.0(prettier@3.6.2)(typescript@5.9.2)':
+  '@pixpilot/dev-config@3.1.0(prettier@3.6.2)(typescript@5.9.2)':
     dependencies:
       '@fastify/deepmerge': 3.1.0
       '@manypkg/get-packages': 3.1.0
