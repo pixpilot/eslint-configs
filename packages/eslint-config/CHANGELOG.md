@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.7.0
+
+### Minor Changes
+
+- update CodeQL configuration and workflow
+
 ## 2.6.1
 
 ### Patch Changes
