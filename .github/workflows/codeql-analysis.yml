@@ -34,7 +34,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          config-file: .github/codeql/codeql-configuration.yml
+          config-file: .github/codeql/codeql-config.yml
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
@@ -55,7 +55,7 @@ jobs:
 #       - name: Checkout repository
 #         uses: actions/checkout@v4
 
-#       - name: CodeQL Analysis Reporter
+#       - name: Perform CodeQL Analysis
 #         uses: pixpilot/github/actions/codeql-analysis-reporter@main
 #         with:
 #           token: ${{ secrets.GITHUB_TOKEN }}
