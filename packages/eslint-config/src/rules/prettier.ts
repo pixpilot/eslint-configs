@@ -17,6 +17,7 @@ export async function prettierConfigs(): Promise<TypedFlatConfigItem[]> {
         'antfu/curly': 'off',
         'antfu/indent-unindent': 'off',
         'antfu/consistent-list-newline': 'off',
+        'antfu/consistent-chaining': 'off',
       },
     },
   ];
