@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.7.2
+
+### Patch Changes
+
+- c866299: patch release
+
 ## 2.7.1
 
 ### Patch Changes
