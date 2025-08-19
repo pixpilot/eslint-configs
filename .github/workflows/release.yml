@@ -1,4 +1,4 @@
-name: 'Release Workflow'
+name: Release Workflow
 on:
   push:
     branches:
@@ -35,9 +35,6 @@ jobs:
 
       - name: Setup project
         uses: ./.github/actions/setup-project
-        with:
-          registry-url: 'https://registry.npmjs.org'
-          build: 'false'
 
       - name: Release
         uses: pixpilot/changesets-autopilot@v1
