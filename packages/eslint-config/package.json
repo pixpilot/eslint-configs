@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@fastify/deepmerge": "catalog:prod",
-    "@pixpilot/antfu-eslint-config": "^3.0.3",
+    "@pixpilot/antfu-eslint-config": "^4.0.3",
     "eslint-config-prettier": "^10.1.8",
     "local-pkg": "^1.1.1"
   },
