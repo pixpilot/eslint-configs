@@ -1,5 +1,11 @@
 # @pixpilot/eslint-test-utils
 
+## 0.4.1
+
+### Patch Changes
+
+- update dependencies in pnpm-workspace.yaml
+
 ## 0.4.0
 
 ### Minor Changes

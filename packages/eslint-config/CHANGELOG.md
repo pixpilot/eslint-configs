@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.7.1
+
+### Patch Changes
+
+- update dependencies in pnpm-workspace.yaml
+
 ## 2.7.0
 
 ### Minor Changes
