@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.7.3
+
+### Patch Changes
+
+- update @pixpilot/antfu-eslint-config to version ^4.0.3
+
 ## 2.7.2
 
 ### Patch Changes
