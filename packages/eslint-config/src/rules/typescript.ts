@@ -22,14 +22,3 @@ export async function typescriptConfigs(): Promise<TypedFlatConfigItem[]> {
     },
   ];
 }
-
-export async function tsxConfigs(): Promise<TypedFlatConfigItem[]> {
-  return [
-    {
-      files: [GLOB_TSX],
-      rules: {
-        'ts/explicit-module-boundary-types': 'off',
-      },
-    },
-  ];
-}

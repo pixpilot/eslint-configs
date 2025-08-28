@@ -11,6 +11,7 @@ import type {
 import config from '@pixpilot/antfu-eslint-config';
 import {
   javascriptConfigs,
+  jsxConfigs,
   prettierConfigs,
   testConfigs,
   tsxConfigs,
@@ -48,6 +49,8 @@ export function defineConfig(
 
   // Add JS override rules
   mergedUserConfigs.push(javascriptConfigs());
+
+  mergedUserConfigs.push(jsxConfigs());
 
   if (mergedOptions.typescript !== undefined && mergedOptions.typescript !== false) {
     // Add TS override rules

@@ -159,6 +159,21 @@ console.log('test');
       },
     },
     {
+      code: `const foo = () => { return 42; };`,
+      filePath: 'arrow-body-style.jsx',
+      description: 'should report arrow-body-style error in JSX file',
+      shouldNotFailRuleName: 'arrow-body-style',
+    },
+    {
+      code: `const bar = (): number => { return 42; };`,
+      filePath: 'arrow-body-style.tsx',
+      description: 'should report arrow-body-style error in TSX file',
+      shouldNotFailRuleName: 'arrow-body-style',
+      options: {
+        typescript: { tsconfigPath: '' },
+      },
+    },
+    {
       code: `console.log('testing');`,
       filePath: 'foo.test.ts',
       description:
