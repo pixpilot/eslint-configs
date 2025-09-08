@@ -6,7 +6,7 @@ catalogs:
   dev:
     '@commitlint/cli': ^19.8.1
     '@commitlint/config-conventional': ^19.8.1
-    '@pixpilot/dev-config': ^3.1.0
+    '@pixpilot/dev-config': ^3.1.2
     '@pixpilot/workspace-package-generator': ^1.0.4
     '@rollup/plugin-terser': ^0.4.4
     '@rollup/plugin-typescript': ^12.1.4
@@ -15,11 +15,11 @@ catalogs:
     '@vitest/coverage-v8': ^3.2.4
     '@vitest/ui': ^3.2.4
     husky: ^9.1.7
-    lint-staged: ^16.1.5
+    lint-staged: ^16.1.6
     prettier: ^3.6.2
     rimraf: ^6.0.1
     rollup: ^4.46.3
-    tsx: ^4.20.4
+    tsx: ^4.20.5
     turbo: ^2.5.6
     typescript: ^5.9.2
     vitest: ^3.2.4
