@@ -52,7 +52,7 @@
     "@fastify/deepmerge": "catalog:prod",
     "@pixpilot/antfu-eslint-config": "^4.0.3",
     "eslint-config-prettier": "^10.1.8",
-    "local-pkg": "^1.1.1"
+    "local-pkg": "^1.1.2"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
