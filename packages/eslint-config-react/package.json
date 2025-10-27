@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/eslint-config-react",
   "type": "module",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "packageManager": "pnpm@10.15.0",
   "description": "ESLint configuration for React projects",
   "author": "m.doaie <m.doaie@hotmail.com> (https://github.com/ccpu)",

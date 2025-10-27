@@ -1,5 +1,15 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.8.0
+
+### Minor Changes
+
+- add JSX and TSX configuration support
+
+### Patch Changes
+
+- update descriptions for arrow-body-style errors in JSX/TSX files
+
 ## 2.7.3
 
 ### Patch Changes
