@@ -1,55 +1,60 @@
-# Pixpilot ESLint Configs Monorepo
+# eslint-configs
 
-This monorepo contains shared ESLint configurations and utilities used across Pixpilot projects. It is designed to provide consistent, high-quality linting for JavaScript, TypeScript, React, and Next.js codebases at Pixpilot. While these configs are tailored for our internal standards, you are welcome to use, adapt, and extend them for your own projects!
-
-## ✨ Features
-
-- Multiple shareable ESLint configs for different stacks (base, React, Next.js)
-- TypeScript and JavaScript support
-- Utilities for testing custom ESLint rules
-- Consistent linting and formatting across all Pixpilot projects
+> A modern TypeScript monorepo managed with pnpm and TurboRepo.
 
 ## 🚀 Getting Started
 
-1. Install dependencies:
-   ```sh
-   pnpm install
-   ```
-2. Build all packages:
-   ```sh
-   pnpm build
-   ```
-3. Run tests:
-   ```sh
-   pnpm test
-   ```
+### Development
+
+Build all packages:
+
+```sh
+pnpm build
+```
+
+Run tests:
+
+```sh
+pnpm test
+```
+
+Lint and format:
+
+```sh
+pnpm lint
+pnpm format
+```
+
+### Create a New Package
+
+Generate a new package in the monorepo:
+
+```sh
+pnpm run turbo:gen:init
+```
 
 ## 📦 Packages
 
-- [eslint-config](./packages/eslint-config) – Base ESLint config for JavaScript/TypeScript projects
-- [eslint-config-next](./packages/eslint-config-next) – ESLint config for Next.js projects
-- [eslint-config-react](./packages/eslint-config-react) – ESLint config for React projects
-- [eslint-test-utils](./packages/eslint-test-utils) – Utilities for testing custom ESLint rules
+### [eslint-config](./packages/eslint-config/README.md)
+
+Base ESLint configuration for PixPilot projects
+
+### [eslint-config-next](./packages/eslint-config-next/README.md)
+
+ESLint configuration for Next.js projects
+
+### [eslint-config-react](./packages/eslint-config-react/README.md)
+
+ESLint configuration for React projects
+
+### [eslint-test-utils](./packages/eslint-test-utils/README.md)
+
+Utilities for testing ESLint rules
+
 
 ## 🚢 Releases
 
-This monorepo uses the [Changeset Autopilot GitHub Action](https://github.com/pixpilot/changesets-autopilot) for automated, dependency-aware versioning and publishing. It:
-
-- Detects conventional commits and generates changesets automatically
-- Handles branch-based release channels (main, next, beta, etc.)
-- Versions and publishes only changed packages to npm
-- Manages pre-releases and dist-tags
-- Runs entirely in CI for maximum reliability
-
-**How it works:**
-
-- On every push to a release branch, the action analyzes commits, generates changesets, versions packages, and publishes to npm.
-- No manual steps are needed—just follow the conventional commit format and push to the correct branch.
-- See the [Changeset Autopilot documentation](https://github.com/pixpilot/changesets-autopilot) for setup and configuration details.
-
-## 🤝 Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+This project uses [Changesets](https://github.com/changesets/changesets) for version management and publishing.
 
 ## 📄 License
 
