@@ -22,6 +22,7 @@
     "@types/node": "catalog:dev",
     "eslint": "catalog:eslint",
     "rollup": "catalog:dev",
+    "tslib": "catalog:dev",
     "typescript": "catalog:dev"
   },
   "prettier": "@internal/prettier-config"
