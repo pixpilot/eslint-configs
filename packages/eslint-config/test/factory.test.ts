@@ -1,9 +1,11 @@
 import type { TestFixture } from '@pixpilot/eslint-test-utils';
 import type { ConfigOptions } from '../src/types';
+import { GLOB_JS, GLOB_TS, GLOB_TSX } from '@pixpilot/antfu-eslint-config';
 import { eslintRulesTestRunner } from '@pixpilot/eslint-test-utils';
 import { ESLint } from 'eslint';
 import { describe, expect, it } from 'vitest';
 import defineConfig from '../src/factory';
+import { promiseConfigs } from '../src/rules';
 
 describe('configFunc', () => {
   it('should return a config object when called', async () => {
@@ -228,6 +230,21 @@ console.log('test');
         typescript: { tsconfigPath: '' },
       },
     },
+    {
+      /*
+       * ts/promise-function-async is type-aware and requires a real tsconfigPath.
+       * When tsconfigPath is empty (no type-aware linting), the rule must NOT be
+       * applied — otherwise ESLint throws an error at rule-load time.
+       */
+      code: `function fetchData(): Promise<string> { return Promise.resolve('data'); }`,
+      filePath: 'fetch.ts',
+      description:
+        'should not apply ts/promise-function-async when tsconfigPath is not configured (no type-aware linting)',
+      shouldNotFailRuleName: 'ts/promise-function-async',
+      options: {
+        typescript: { tsconfigPath: '' },
+      },
+    },
   ];
 
   // Helper function to create a typed config function wrapper
@@ -249,6 +266,41 @@ console.log('test');
 
   // Use the generic test runner
   eslintRulesTestRunner(testFixtures, createTypedConfig);
+
+  it('promiseConfigs() should warn without autofix for TSX and error with ReactNode for TS', async () => {
+    const configs = await promiseConfigs();
+
+    /*
+     * TS entry: rule on with ReactNode allowed (explicit annotation covers
+     * the case; inferred types in plain TS files are rare in React 19).
+     */
+    const tsEntry = configs.find(
+      (c) =>
+        Array.isArray(c.files) &&
+        c.files.includes(GLOB_TS) &&
+        !c.files.includes(GLOB_TSX),
+    );
+    expect(tsEntry).toBeDefined();
+    expect(tsEntry?.files).not.toContain(GLOB_JS);
+    expect(tsEntry?.rules?.['ts/promise-function-async']).toEqual([
+      'error',
+      { allowedPromiseNames: ['ReactNode'] },
+    ]);
+
+    /*
+     * TSX entry: original rule is OFF so no errors. The no-autofix variant
+     * warns without inserting `async` — React 19 widens ReactNode to include
+     * Promise<AwaitedReactNode>, so every ReactNode-returning function would
+     * otherwise be auto-fixed into an async function incorrectly.
+     */
+    const tsxEntry = configs.find(
+      (c) => Array.isArray(c.files) && c.files.includes(GLOB_TSX),
+    );
+    expect(tsxEntry).toBeDefined();
+    expect(tsxEntry?.rules?.['ts/promise-function-async']).toBe('off');
+    expect(tsxEntry?.rules?.['ts-no-autofix/promise-function-async']).toBe('warn');
+    expect(tsxEntry?.plugins?.['ts-no-autofix']).toBeDefined();
+  });
 
   it('should work with multiple rule categories enabled', async () => {
     const configResult = await createTypedConfig({

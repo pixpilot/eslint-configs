@@ -1,3 +1,3 @@
-import baseConfig from '@internal/eslint-config/base';
+import reactConfig from './src/config';
 
-export default baseConfig;
+export default reactConfig();

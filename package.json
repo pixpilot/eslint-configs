@@ -1,7 +1,7 @@
 {
   "name": "eslint-configs",
   "private": true,
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.33.0",
   "author": "m.doaie <m.doaie@hotmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/pixpilot/eslint-configs",
@@ -36,20 +36,20 @@
     "deps:update": "npx taze -r -w && pnpm install",
     "deps:update:major": "npx taze major -r -w&& pnpm install",
     "changeset": "changeset",
-    "generate-packages-section": "node scripts/generate-packages-section.js"
+    "generate-packages-section": "node scripts/generate-packages-section.js",
+    "gen:package": "npx @pixpilot/scaffoldfy --config ./generators/package/scaffoldfy.json"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.6",
+    "@changesets/cli": "^2.30.0",
     "@commitlint/cli": "catalog:dev",
     "@commitlint/config-conventional": "catalog:dev",
     "@internal/prettier-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
-    "@pixpilot/workspace-package-generator": "catalog:dev",
     "@turbo/gen": "catalog:dev",
     "@types/node": "catalog:dev",
     "@vitest/coverage-v8": "catalog:dev",
     "@vitest/ui": "catalog:dev",
-    "eslint": "catalog:eslint",
+    "eslint": "^9.33.0",
     "husky": "catalog:dev",
     "lint-staged": "catalog:dev",
     "prettier": "catalog:dev",

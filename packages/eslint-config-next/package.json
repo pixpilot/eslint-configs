@@ -2,7 +2,7 @@
   "name": "@pixpilot/eslint-config-next",
   "type": "module",
   "version": "0.0.25",
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.33.0",
   "description": "ESLint configuration for Next.js projects",
   "author": "m.doaie <m.doaie@hotmail.com> (https://github.com/ccpu)",
   "license": "MIT",
@@ -43,7 +43,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@next/eslint-plugin-next": "^15.4.7",
+    "@next/eslint-plugin-next": "^15.5.15",
     "@pixpilot/eslint-config-react": "workspace:*"
   },
   "devDependencies": {

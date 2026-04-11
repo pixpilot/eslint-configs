@@ -2,7 +2,7 @@
   "name": "@pixpilot/eslint-test-utils",
   "type": "module",
   "version": "0.4.1",
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.33.0",
   "description": "Utilities for testing ESLint rules",
   "author": "m.doaie <m.doaie@hotmail.com> (https://github.com/ccpu)",
   "license": "MIT",

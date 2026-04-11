@@ -1,10 +1,15 @@
+import type { ConfigOptions } from '@pixpilot/eslint-config';
 import type { TestFixture } from '@pixpilot/eslint-test-utils';
+import { fileURLToPath } from 'node:url';
 import { eslintRulesTestRunner } from '@pixpilot/eslint-test-utils';
-import { describe } from 'vitest';
+import { ESLint } from 'eslint';
+import { describe, expect, it } from 'vitest';
 import defineConfig from '../src/config';
 
-// Async wrapper to match expected signature
-async function createTypedConfig(options: Partial<Record<string, boolean>>) {
+const packageRoot = fileURLToPath(new URL('..', import.meta.url));
+const tsconfigPath = fileURLToPath(new URL('../tsconfig.json', import.meta.url));
+
+async function createTypedConfig(options: ConfigOptions = {}) {
   return defineConfig(options);
 }
 
@@ -103,4 +108,53 @@ describe('eslint-config-react', () => {
     ],
     createTypedConfig,
   );
+
+  it('allows ReactNode return types to warn (no autofix) in TSX files', async () => {
+    const eslint = new ESLint({
+      cwd: packageRoot,
+      overrideConfig: await createTypedConfig({
+        typescript: {
+          tsconfigPath,
+        },
+      }),
+    });
+
+    const [result] = await eslint.lintFiles(['test/component.tsx']);
+    const messages = result?.messages ?? [];
+
+    /*
+     * The original rule must be OFF — no errors from ts/promise-function-async.
+     * React 19 widens ReactNode to include Promise<AwaitedReactNode>, so this
+     * rule would incorrectly flag every ReactNode-returning function as needing
+     * async.
+     */
+    expect(messages.map((m) => m.ruleId)).not.toContain('ts/promise-function-async');
+
+    /*
+     * The no-autofix variant must WARN so developers are still notified, but
+     * no fix is applied — the auto-fixer must not insert `async` into React
+     * component functions.
+     */
+    const noAutofixWarnings = messages.filter(
+      (m) => m.ruleId === 'ts-no-autofix/promise-function-async',
+    );
+    expect(noAutofixWarnings.length).toBeGreaterThan(0);
+    expect(noAutofixWarnings.every((m) => m.fix === undefined)).toBe(true);
+
+    const config = await eslint.calculateConfigForFile('test/component.tsx');
+
+    /*
+     * Verify resolved rule levels: ts/promise-function-async is off (0) and
+     * the no-autofix variant is warn (1).
+     */
+    const originalRule = config?.rules?.['ts/promise-function-async'];
+    const originalLevel = Array.isArray(originalRule) ? originalRule[0] : originalRule;
+    expect(originalLevel).toBe(0);
+
+    const noAutofixRule = config?.rules?.['ts-no-autofix/promise-function-async'];
+    const noAutofixLevel = Array.isArray(noAutofixRule)
+      ? noAutofixRule[0]
+      : noAutofixRule;
+    expect(noAutofixLevel).toBe(1);
+  });
 });

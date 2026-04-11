@@ -13,6 +13,7 @@ import {
   javascriptConfigs,
   jsxConfigs,
   prettierConfigs,
+  promiseConfigs,
   testConfigs,
   tsxConfigs,
   turboConfigs,
@@ -57,6 +58,19 @@ export function defineConfig(
     mergedUserConfigs.push(typescriptConfigs());
     // Add TSX override rules
     mergedUserConfigs.push(tsxConfigs());
+
+    /*
+     * ts/promise-function-async is type-aware and requires a tsconfig path to
+     * operate. Only add the override when type-aware linting is configured.
+     */
+    const tsOptions = mergedOptions.typescript;
+    const isTypeAware =
+      typeof tsOptions === 'object' &&
+      'tsconfigPath' in tsOptions &&
+      Boolean(tsOptions.tsconfigPath);
+    if (isTypeAware) {
+      mergedUserConfigs.push(promiseConfigs());
+    }
   }
 
   if (test) {
