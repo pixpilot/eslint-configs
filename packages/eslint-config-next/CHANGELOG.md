@@ -1,5 +1,15 @@
 # @pixpilot/eslint-config-next
 
+## 0.1.0
+
+### Minor Changes
+
+- add tslib dependency to pnpm workspace and rollup config
+
+### Patch Changes
+
+- @pixpilot/eslint-config-react@0.4.6
+
 ## 0.0.25
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @pixpilot/eslint-test-utils
 
+## 0.5.0
+
+### Minor Changes
+
+- add tslib dependency to pnpm workspace and rollup config
+- disable promise autofix in TSX
+
 ## 0.4.1
 
 ### Patch Changes
