@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.10.0
+
+### Minor Changes
+
+- disable promise rule for Markdown virtual code blocks
+
 ## 2.9.0
 
 ### Minor Changes

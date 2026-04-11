@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/eslint-config",
   "type": "module",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "packageManager": "pnpm@10.33.0",
   "description": "Base ESLint configuration for PixPilot projects",
   "author": "m.doaie <m.doaie@hotmail.com> (https://github.com/ccpu)",
