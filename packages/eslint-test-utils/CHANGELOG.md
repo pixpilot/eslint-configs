@@ -1,5 +1,11 @@
 # @pixpilot/eslint-test-utils
 
+## 0.6.0
+
+### Minor Changes
+
+- 6fcc785: update and fixes
+
 ## 0.5.0
 
 ### Minor Changes

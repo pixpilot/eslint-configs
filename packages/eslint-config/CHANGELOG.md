@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.9.0
+
+### Minor Changes
+
+- 6fcc785: update and fixes
+
 ## 2.8.0
 
 ### Minor Changes
