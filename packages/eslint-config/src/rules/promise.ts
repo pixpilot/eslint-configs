@@ -89,5 +89,16 @@ export async function promiseConfigs(): Promise<TypedFlatConfigItem[]> {
         }),
       },
     },
+    {
+      /*
+       * Markdown virtual code blocks inherit TS/TSX globs but do not expose
+       * parser services, so the type-aware promise rule must stay disabled.
+       */
+      files: ['**/*.md/**'],
+      rules: {
+        'ts/promise-function-async': 'off',
+        'ts-no-autofix/promise-function-async': 'off',
+      },
+    },
   ];
 }
