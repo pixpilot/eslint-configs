@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@fastify/deepmerge": "catalog:prod",
-    "@pixpilot/antfu-eslint-config": "^4.0.4",
+    "@pixpilot/antfu-eslint-config": "^4.0.6",
     "eslint-config-prettier": "^10.1.8",
     "local-pkg": "^1.1.2"
   },
@@ -66,6 +66,7 @@
     "@types/node": "catalog:dev",
     "eslint-flat-config-utils": "^2.1.4",
     "eslint-plugin-turbo": "catalog:eslint",
+    "prettier": "catalog:dev",
     "rollup": "catalog:dev"
   }
 }
