@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.11.0
+
+### Minor Changes
+
+- update @pixpilot/antfu-eslint-config to version ^4.0.6
+
 ## 2.10.0
 
 ### Minor Changes
