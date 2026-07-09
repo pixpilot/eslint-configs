@@ -1,5 +1,11 @@
 # @pixpilot/eslint-test-utils
 
+## 0.7.1
+
+### Patch Changes
+
+- fc0a116: fix release
+
 ## 0.7.0
 
 ### Minor Changes

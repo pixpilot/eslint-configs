@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.12.1
+
+### Patch Changes
+
+- fc0a116: fix release
+
 ## 2.12.0
 
 ### Minor Changes
