@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.12.0
+
+### Minor Changes
+
+- enhance setup project action with node version file support
+
 ## 2.11.0
 
 ### Minor Changes

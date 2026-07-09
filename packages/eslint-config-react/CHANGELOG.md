@@ -1,5 +1,16 @@
 # @pixpilot/eslint-config-react
 
+## 0.6.0
+
+### Minor Changes
+
+- enhance setup project action with node version file support
+
+### Patch Changes
+
+- Updated dependencies
+  - @pixpilot/eslint-config@2.12.0
+
 ## 0.5.2
 
 ### Patch Changes
