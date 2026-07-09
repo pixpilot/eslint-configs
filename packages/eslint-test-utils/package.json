@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pixpilot/eslint-test-utils.git"
+    "url": "https://github.com/pixpilot/eslint-configs.git"
   },
   "keywords": [],
   "exports": "./src/index.ts",
@@ -54,6 +54,7 @@
     "@internal/vitest-config": "workspace:*",
     "@pixpilot/dev-config": "catalog:dev",
     "@types/node": "catalog:dev",
+    "prettier": "catalog:dev",
     "rollup": "catalog:dev"
   }
 }

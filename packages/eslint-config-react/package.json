@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pixpilot/eslint-config-react.git"
+    "url": "https://github.com/pixpilot/eslint-configs.git"
   },
   "keywords": [],
   "exports": "./src/index.ts",
@@ -60,6 +60,7 @@
     "@pixpilot/eslint-test-utils": "workspace:*",
     "@types/node": "catalog:dev",
     "@types/react": "^19.2.14",
+    "prettier": "catalog:dev",
     "react": "19.2.5",
     "rollup": "catalog:dev"
   }

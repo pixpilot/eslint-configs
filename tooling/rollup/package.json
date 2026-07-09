@@ -21,6 +21,7 @@
     "@rollup/plugin-typescript": "catalog:dev",
     "@types/node": "catalog:dev",
     "eslint": "catalog:eslint",
+    "prettier": "catalog:dev",
     "rollup": "catalog:dev",
     "tslib": "catalog:dev",
     "typescript": "catalog:dev"
