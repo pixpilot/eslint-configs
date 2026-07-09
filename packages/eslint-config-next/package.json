@@ -1,7 +1,7 @@
 {
   "name": "@pixpilot/eslint-config-next",
   "type": "module",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "packageManager": "pnpm@10.33.0",
   "description": "ESLint configuration for Next.js projects",
   "author": "m.doaie <m.doaie@hotmail.com> (https://github.com/ccpu)",

@@ -1,5 +1,11 @@
 # @pixpilot/eslint-test-utils
 
+## 0.7.0
+
+### Minor Changes
+
+- enhance setup project action with node version file support
+
 ## 0.6.0
 
 ### Minor Changes
