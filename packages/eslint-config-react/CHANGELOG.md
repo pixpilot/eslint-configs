@@ -1,5 +1,13 @@
 # @pixpilot/eslint-config-react
 
+## 0.6.1
+
+### Patch Changes
+
+- fc0a116: fix release
+- Updated dependencies [fc0a116]
+  - @pixpilot/eslint-config@2.12.1
+
 ## 0.6.0
 
 ### Minor Changes
