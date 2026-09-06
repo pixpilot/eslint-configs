@@ -55,6 +55,7 @@
     "@pixpilot/dev-config": "catalog:dev",
     "@types/node": "catalog:dev",
     "prettier": "catalog:dev",
-    "rollup": "catalog:dev"
+    "rollup": "catalog:dev",
+    "typescript": "catalog:dev"
   }
 }

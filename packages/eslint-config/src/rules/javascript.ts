@@ -131,7 +131,7 @@ export async function javascriptConfigs(): Promise<TypedFlatConfigItem[]> {
         'no-unused-labels': 'error',
         'no-useless-concat': 'error',
         'no-useless-escape': 'error',
-        'no-void': 'error',
+        'no-void': ['error', { allowAsStatement: true }],
         'no-warning-comments': [
           'warn',
           {

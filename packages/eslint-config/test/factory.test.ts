@@ -5,7 +5,7 @@ import { eslintRulesTestRunner } from '@pixpilot/eslint-test-utils';
 import { ESLint } from 'eslint';
 import { describe, expect, it } from 'vitest';
 import defineConfig from '../src/factory';
-import { promiseConfigs } from '../src/rules';
+import { javascriptConfigs, promiseConfigs } from '../src/rules';
 
 describe('configFunc', () => {
   it('should return a config object when called', async () => {
@@ -267,6 +267,12 @@ console.log('test');
   // Use the generic test runner
   eslintRulesTestRunner(testFixtures, createTypedConfig);
 
+  it('javascriptConfigs() should allow void expressions used as statements', async () => {
+    const [config] = await javascriptConfigs();
+
+    expect(config?.rules?.['no-void']).toEqual(['error', { allowAsStatement: true }]);
+  });
+
   it('promiseConfigs() should warn without autofix for TSX and error with ReactNode for TS', async () => {
     const configs = await promiseConfigs();
 
@@ -287,6 +293,15 @@ console.log('test');
       { allowedPromiseNames: ['ReactNode'] },
     ]);
 
+    const noFloatingPromisesEntry = configs.find(
+      (c) =>
+        Array.isArray(c.files) && c.files.includes(GLOB_TS) && c.files.includes(GLOB_TSX),
+    );
+    expect(noFloatingPromisesEntry?.rules?.['ts/no-floating-promises']).toEqual([
+      'error',
+      { ignoreVoid: true },
+    ]);
+
     /*
      * TSX entry: original rule is OFF so no errors. The no-autofix variant
      * warns without inserting `async` — React 19 widens ReactNode to include
@@ -294,12 +309,20 @@ console.log('test');
      * otherwise be auto-fixed into an async function incorrectly.
      */
     const tsxEntry = configs.find(
-      (c) => Array.isArray(c.files) && c.files.includes(GLOB_TSX),
+      (c) =>
+        Array.isArray(c.files) &&
+        c.files.includes(GLOB_TSX) &&
+        c.rules?.['ts/promise-function-async'] === 'off',
     );
     expect(tsxEntry).toBeDefined();
     expect(tsxEntry?.rules?.['ts/promise-function-async']).toBe('off');
     expect(tsxEntry?.rules?.['ts-no-autofix/promise-function-async']).toBe('warn');
     expect(tsxEntry?.plugins?.['ts-no-autofix']).toBeDefined();
+
+    const markdownEntry = configs.find(
+      (c) => Array.isArray(c.files) && c.files.includes('**/*.md/**'),
+    );
+    expect(markdownEntry?.rules?.['ts/no-floating-promises']).toBe('off');
   });
 
   it('should work with multiple rule categories enabled', async () => {

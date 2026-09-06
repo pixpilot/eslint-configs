@@ -67,6 +67,7 @@
     "eslint-flat-config-utils": "^2.1.4",
     "eslint-plugin-turbo": "catalog:eslint",
     "prettier": "catalog:dev",
-    "rollup": "catalog:dev"
+    "rollup": "catalog:dev",
+    "typescript": "catalog:dev"
   }
 }

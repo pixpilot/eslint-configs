@@ -18,6 +18,7 @@
     "@internal/tsconfig": "workspace:*",
     "@vitest/coverage-v8": "catalog:dev",
     "eslint": "catalog:eslint",
+    "typescript": "catalog:dev",
     "vitest": "catalog:dev"
   },
   "prettier": "@internal/prettier-config"

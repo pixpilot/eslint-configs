@@ -64,6 +64,12 @@ export async function promiseConfigs(): Promise<TypedFlatConfigItem[]> {
 
   return [
     {
+      files: [GLOB_TS, GLOB_TSX],
+      rules: {
+        'ts/no-floating-promises': ['error', { ignoreVoid: true }],
+      },
+    },
+    {
       files: [GLOB_TS],
       rules: {
         'ts/promise-function-async': ['error', { allowedPromiseNames: ['ReactNode'] }],
@@ -96,6 +102,7 @@ export async function promiseConfigs(): Promise<TypedFlatConfigItem[]> {
        */
       files: ['**/*.md/**'],
       rules: {
+        'ts/no-floating-promises': 'off',
         'ts/promise-function-async': 'off',
         'ts-no-autofix/promise-function-async': 'off',
       },
