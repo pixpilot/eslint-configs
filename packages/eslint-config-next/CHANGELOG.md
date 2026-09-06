@@ -1,5 +1,13 @@
 # @pixpilot/eslint-config-next
 
+## 0.2.5
+
+### Patch Changes
+
+- allow intentional void expressions
+- Updated dependencies
+  - @pixpilot/eslint-config-react@0.6.2
+
 ## 0.2.4
 
 ### Patch Changes
