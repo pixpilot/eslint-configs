@@ -1,5 +1,13 @@
 # @pixpilot/eslint-config-react
 
+## 0.6.3
+
+### Patch Changes
+
+- 85c18a4: fix: allows continue in loop
+- Updated dependencies [85c18a4]
+  - @pixpilot/eslint-config@2.12.3
+
 ## 0.6.2
 
 ### Patch Changes
