@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.12.2
+
+### Patch Changes
+
+- allow intentional void expressions
+
 ## 2.12.1
 
 ### Patch Changes

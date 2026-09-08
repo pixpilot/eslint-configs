@@ -1,5 +1,11 @@
 # @pixpilot/eslint-test-utils
 
+## 0.7.2
+
+### Patch Changes
+
+- allow intentional void expressions
+
 ## 0.7.1
 
 ### Patch Changes
