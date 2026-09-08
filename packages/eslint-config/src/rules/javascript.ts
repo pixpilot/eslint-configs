@@ -50,7 +50,7 @@ export async function javascriptConfigs(): Promise<TypedFlatConfigItem[]> {
           },
         ],
         'no-constructor-return': 'error',
-        'no-continue': 'error',
+        'no-continue': 'off',
         'no-div-regex': ['error'],
         'no-dupe-else-if': 'error',
         'no-else-return': [
