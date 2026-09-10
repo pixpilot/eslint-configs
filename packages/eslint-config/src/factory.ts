@@ -11,6 +11,7 @@ import type {
 import config from '@pixpilot/antfu-eslint-config';
 import {
   javascriptConfigs,
+  jsoncConfigs,
   jsxConfigs,
   prettierConfigs,
   promiseConfigs,
@@ -52,6 +53,11 @@ export function defineConfig(
   mergedUserConfigs.push(javascriptConfigs());
 
   mergedUserConfigs.push(jsxConfigs());
+
+  if (mergedOptions.jsonc === true) {
+    // Allow JSONC-specific syntax without relaxing strict JSON files.
+    mergedUserConfigs.push(jsoncConfigs());
+  }
 
   if (mergedOptions.typescript !== undefined && mergedOptions.typescript !== false) {
     // Add TS override rules

@@ -267,6 +267,38 @@ console.log('test');
   // Use the generic test runner
   eslintRulesTestRunner(testFixtures, createTypedConfig);
 
+  it('should allow comments and trailing commas in JSONC files', async () => {
+    const eslint = new ESLint({
+      overrideConfig: await createTypedConfig({ jsonc: true }),
+    });
+    const [result] = await eslint.lintText(
+      `{
+  // A JSONC comment
+  "enabled": true,
+}`,
+      { filePath: 'settings.jsonc' },
+    );
+
+    expect(result?.messages).toEqual([]);
+  });
+
+  it('should keep JSON files strict', async () => {
+    const eslint = new ESLint({
+      overrideConfig: await createTypedConfig({ jsonc: true }),
+    });
+    const [result] = await eslint.lintText(
+      `{
+  // JSON does not allow comments
+  "enabled": true,
+}`,
+      { filePath: 'settings.json' },
+    );
+    const ruleIds = result?.messages.map((message) => message.ruleId);
+
+    expect(ruleIds).toContain('jsonc/no-comments');
+    expect(ruleIds).toContain('jsonc/comma-dangle');
+  });
+
   it('javascriptConfigs() should allow void expressions used as statements', async () => {
     const [config] = await javascriptConfigs();
 
