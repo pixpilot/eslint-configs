@@ -1,5 +1,13 @@
 # @pixpilot/eslint-config-next
 
+## 0.2.7
+
+### Patch Changes
+
+- add `bugs` field to package.json files
+- Updated dependencies
+  - @pixpilot/eslint-config-react@0.6.4
+
 ## 0.2.6
 
 ### Patch Changes

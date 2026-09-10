@@ -1,5 +1,15 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.13.0
+
+### Minor Changes
+
+- add support for JSONC syntax and rules
+
+### Patch Changes
+
+- add `bugs` field to package.json files
+
 ## 2.12.3
 
 ### Patch Changes
