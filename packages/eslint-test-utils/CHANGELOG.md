@@ -1,5 +1,11 @@
 # @pixpilot/eslint-test-utils
 
+## 0.7.3
+
+### Patch Changes
+
+- 85c18a4: fix: allows continue in loop
+
 ## 0.7.2
 
 ### Patch Changes

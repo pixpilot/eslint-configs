@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.12.3
+
+### Patch Changes
+
+- 85c18a4: fix: allows continue in loop
+
 ## 2.12.2
 
 ### Patch Changes
