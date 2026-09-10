@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/pixpilot/eslint-configs.git"
   },
+  "bugs": {
+    "url": "https://github.com/pixpilot/eslint-configs/issues"
+  },
   "keywords": [],
   "exports": "./src/index.ts",
   "files": [
