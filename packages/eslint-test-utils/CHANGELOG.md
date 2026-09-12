@@ -1,5 +1,11 @@
 # @pixpilot/eslint-test-utils
 
+## 0.9.0
+
+### Minor Changes
+
+- update eslint and add new dependencies
+
 ## 0.8.0
 
 ### Minor Changes

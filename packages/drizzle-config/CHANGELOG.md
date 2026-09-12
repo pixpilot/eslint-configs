@@ -1,5 +1,15 @@
 # @pixpilot/drizzle-config
 
+## 0.2.0
+
+### Minor Changes
+
+- add Drizzle ORM safety config
+
+### Patch Changes
+
+- improve error messages for timestamp() calls
+
 ## 0.1.0
 
 ### Minor Changes
