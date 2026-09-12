@@ -1,5 +1,18 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.15.0
+
+### Minor Changes
+
+- add Drizzle ORM safety config
+- update eslint and add new dependencies
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+  - @pixpilot/drizzle-config@0.2.0
+
 ## 2.14.0
 
 ### Minor Changes
