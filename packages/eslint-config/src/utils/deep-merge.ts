@@ -88,7 +88,6 @@ function mergeOptions<T extends object>(target: T, ...sources: T[]): T {
   // Apply rules from each source with shallow merge
   for (const source of sources) {
     if (source == null) {
-      // eslint-disable-next-line no-continue
       continue;
     }
 
@@ -116,7 +115,6 @@ function mergeOptions<T extends object>(target: T, ...sources: T[]): T {
   // Apply overrides from each source
   for (const source of sources) {
     if (source == null) {
-      // eslint-disable-next-line no-continue
       continue;
     }
 

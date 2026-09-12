@@ -14,30 +14,36 @@ async function createTypedConfig(options: ConfigOptions = {}) {
 }
 
 const reactRuleFixture: TestFixture[] = [
+  /*
+   * `@eslint-react/eslint-plugin` v5 dropped the legacy
+   * `react/jsx-no-duplicate-props` rule and ships no equivalent, so duplicate
+   * JSX props are no longer reported by this config. React still warns at
+   * runtime, and TypeScript reports duplicates in typed JSX.
+   */
   {
-    code: `<div className="foo" className="bar">Duplicate</div>`, // This should trigger react/jsx-no-duplicate-props
+    code: `<div className="foo" className="bar">Duplicate</div>`,
     filePath: 'Component.jsx',
-    description: 'should report react rule errors for duplicate className props',
-    shouldFailRuleName: 'react/jsx-no-duplicate-props', // Clear and simple!
+    description: 'no longer reports duplicate props (removed in @eslint-react v5)',
+    shouldNotFailRuleName: 'react/jsx-no-duplicate-props',
   },
   {
-    code: `<div name="foo" className="bar">Duplicate</div>`, // This should NOT trigger react/jsx-no-duplicate-props
+    code: `<div name="foo" className="bar">Duplicate</div>`,
     filePath: 'Component.jsx',
     description: 'should NOT report react rule errors for different prop names',
-    shouldNotFailRuleName: 'react/jsx-no-duplicate-props', // This rule should NOT be found
+    shouldNotFailRuleName: 'react/jsx-no-duplicate-props',
   },
   {
     code: `import React from 'react';
 function Component() {
   if (Math.random() > 0.5) {
-    const [state, setState] = React.useState(0); // This should trigger react-hooks/rules-of-hooks
+    const [state, setState] = React.useState(0); // This should trigger react/rules-of-hooks
   }
   return <div>Test</div>;
 }
 export default Component;`,
     filePath: 'Component.jsx',
     description: 'should report react-hooks rule errors for hooks called conditionally',
-    shouldFailRuleName: 'react-hooks/rules-of-hooks',
+    shouldFailRuleName: 'react/rules-of-hooks',
   },
   {
     code: `const _privateVar = 'test'; // This should trigger no-underscore-dangle`,

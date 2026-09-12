@@ -11,9 +11,9 @@
 
 This project uses Vitest for testing.
 
-# File Naming Conventions
+## File Naming Conventions
 
-## JavaScript/TypeScript
+### JavaScript/TypeScript
 
 - **File Naming:** Use kebab-case for almost all files, including those whose main export is a PascalCase class.
   - Example: `my-module.ts`, `helper-functions.js`, `data-handler.js`

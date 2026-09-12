@@ -36,5 +36,5 @@ export function resolveOptions(
     };
   }
 
-  return mergeOptions(resolvedOptions, op || {}) as ConfigOptions;
+  return mergeOptions(resolvedOptions, op || {});
 }

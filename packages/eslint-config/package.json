@@ -44,7 +44,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "peerDependencies": {
-    "eslint": "^9.10.0",
+    "eslint": "^9.10.0 || ^10.0.0",
     "eslint-plugin-turbo": "^2.5.5"
   },
   "peerDependenciesMeta": {
@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@fastify/deepmerge": "catalog:prod",
-    "@pixpilot/antfu-eslint-config": "^4.0.6",
+    "@pixpilot/antfu-eslint-config": "^4.1.0",
     "eslint-config-prettier": "^10.1.8",
     "local-pkg": "^1.1.2"
   },
@@ -67,7 +67,7 @@
     "@pixpilot/dev-config": "catalog:dev",
     "@pixpilot/eslint-test-utils": "workspace:*",
     "@types/node": "catalog:dev",
-    "eslint-flat-config-utils": "^2.1.4",
+    "eslint-flat-config-utils": "^3.2.0",
     "eslint-plugin-turbo": "catalog:eslint",
     "prettier": "catalog:dev",
     "rollup": "catalog:dev",

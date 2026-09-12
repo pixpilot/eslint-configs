@@ -49,7 +49,7 @@
     "@types/node": "catalog:dev",
     "@vitest/coverage-v8": "catalog:dev",
     "@vitest/ui": "catalog:dev",
-    "eslint": "^9.33.0",
+    "eslint": "catalog:eslint",
     "husky": "catalog:dev",
     "lint-staged": "catalog:dev",
     "prettier": "catalog:dev",
