@@ -9,7 +9,9 @@ import type {
 } from './types';
 // Use require to import process to avoid using the global variable directly
 import config from '@pixpilot/antfu-eslint-config';
+import { isPackageExists } from 'local-pkg';
 import {
+  drizzleConfigs,
   javascriptConfigs,
   jsoncConfigs,
   jsxConfigs,
@@ -45,7 +47,13 @@ export function defineConfig(
 
   // Use the new utility function to resolve options
   const mergedOptions = resolveOptions(defaultOptions, options || {});
-  const { prettier, test, ...antfuEslintOptions } = mergedOptions;
+  const { drizzle, prettier, test, ...antfuEslintOptions } = mergedOptions;
+
+  /*
+   * Enable the Drizzle rules when explicitly requested, otherwise fall back to
+   * detecting `drizzle-orm` in the consuming project.
+   */
+  const enableDrizzle = drizzle ?? isPackageExists('drizzle-orm');
 
   const mergedUserConfigs: Awaitable<TypedFlatConfigItem[]>[] = [];
 
@@ -94,7 +102,22 @@ export function defineConfig(
     mergedUserConfigs.push(turboConfigs());
   }
 
-  const configurations = config(antfuEslintOptions, ...mergedUserConfigs, ...userConfigs);
+  if (enableDrizzle !== false) {
+    mergedUserConfigs.push(drizzleConfigs(enableDrizzle === true ? {} : enableDrizzle));
+  }
+
+  /*
+   * The Drizzle rules ship as their own package here, so older versions of the
+   * upstream config must not register the `drizzle` plugin as well (ESLint
+   * rejects a plugin name being defined twice). Safe to drop once this depends
+   * on a `@pixpilot/antfu-eslint-config` that no longer ships drizzle.
+   */
+  const upstreamOptions = {
+    ...antfuEslintOptions,
+    drizzle: false,
+  } as typeof antfuEslintOptions;
+
+  const configurations = config(upstreamOptions, ...mergedUserConfigs, ...userConfigs);
 
   return configurations;
 }

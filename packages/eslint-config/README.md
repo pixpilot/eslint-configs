@@ -11,3 +11,16 @@ import config from '@pixpilot/eslint-config';
 
 export default config();
 ```
+
+## Drizzle ORM rules
+
+The [`@pixpilot/drizzle-config`](../drizzle-config) rules (`drizzle/prefer-timestamptz`,
+`drizzle/require-enable-rls`) are enabled automatically when `drizzle-orm` is installed,
+and the config is only loaded when they are enabled.
+
+```js
+export default config({
+  // true | false | { files, level, overrides }
+  drizzle: true,
+});
+```

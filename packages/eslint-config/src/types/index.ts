@@ -4,6 +4,7 @@ import type {
   OptionsConfig,
   TypedFlatConfigItem,
 } from '@pixpilot/antfu-eslint-config';
+import type { DrizzleOptions } from '@pixpilot/drizzle-config';
 import type { Linter } from 'eslint';
 import type { FlatConfigComposer } from 'eslint-flat-config-utils';
 
@@ -20,8 +21,16 @@ export type UserConfigs = Awaitable<
 
 export type ReturnTypeOfConfigFunc = ReturnType<ConfigFuncType>;
 
-export type ConfigOptions = OptionsConfig &
+export type ConfigOptions = Omit<OptionsConfig, 'drizzle'> &
   Omit<TypedFlatConfigItem, 'files'> & {
+    /**
+     * Enable the Drizzle ORM safety rules from `@pixpilot/drizzle-config`.
+     *
+     * The config is only loaded when this is enabled.
+     *
+     * @default auto-detected from an installed `drizzle-orm`
+     */
+    drizzle?: boolean | DrizzleOptions;
     prettier?: boolean;
     test?: ConfigOptionsBase['test'] & { relaxed?: boolean };
     turbo?: boolean;
