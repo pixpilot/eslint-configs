@@ -74,9 +74,9 @@ export const preferTimestamptzRule: Rule.RuleModule = {
     },
     messages: {
       bareCall:
-        'timestamp() called with no options. Use timestamptz() helper or pass { withTimezone: true }.',
+        "timestamp() called with no options. Import { withTimezone } from '@pixpilot/drizzle-pg' and spread it, or pass { withTimezone: true }.",
       useTimestamptz:
-        'timestamp() is missing { withTimezone: true }. Use your timestamptz() helper or add { withTimezone: true } explicitly.',
+        "timestamp() is missing { withTimezone: true }. Import { withTimezone } from '@pixpilot/drizzle-pg' and spread it, or add { withTimezone: true } explicitly.",
     },
     schema: [],
     type: 'problem',
