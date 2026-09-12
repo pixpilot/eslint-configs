@@ -1,5 +1,11 @@
 # @pixpilot/eslint-test-utils
 
+## 0.7.4
+
+### Patch Changes
+
+- add `bugs` field to package.json files
+
 ## 0.7.3
 
 ### Patch Changes
