@@ -15,8 +15,9 @@ export default config();
 ## Drizzle ORM rules
 
 The [`@pixpilot/drizzle-config`](../drizzle-config) rules (`drizzle/prefer-timestamptz`,
-`drizzle/require-enable-rls`) are enabled automatically when `drizzle-orm` is installed,
-and the config is only loaded when they are enabled.
+`drizzle/require-enable-rls`, `drizzle/require-user-id-cascade`) are enabled
+automatically when `drizzle-orm` is installed, and the config is only loaded when
+they are enabled. Set the option explicitly to override the detection.
 
 ```js
 export default config({
@@ -24,6 +25,12 @@ export default config({
   drizzle: true,
 });
 ```
+
+## JSON and JSONC
+
+`jsonc/no-comments` is an error for `.json`, and off for `.jsonc` plus the files
+that use a `.json` extension but are JSONC by convention: `tsconfig*.json`,
+`jsconfig*.json` and anything under `.vscode/`.
 
 ## pnpm catalog rules
 
