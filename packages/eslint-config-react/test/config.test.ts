@@ -115,6 +115,22 @@ describe('eslint-config-react', () => {
     createTypedConfig,
   );
 
+  it('enables allowConstantExport for react-refresh/only-export-components', async () => {
+    const eslint = new ESLint({
+      cwd: packageRoot,
+      overrideConfig: await createTypedConfig(),
+    });
+
+    const config = await eslint.calculateConfigForFile('test/component.tsx');
+    const rule = config?.rules?.['react-refresh/only-export-components'];
+
+    expect(Array.isArray(rule)).toBe(true);
+    expect((rule as [number, { allowConstantExport?: boolean }])[0]).toBe(2);
+    expect((rule as [number, { allowConstantExport?: boolean }])[1]).toMatchObject({
+      allowConstantExport: true,
+    });
+  });
+
   it('allows ReactNode return types to warn (no autofix) in TSX files', async () => {
     const eslint = new ESLint({
       cwd: packageRoot,
