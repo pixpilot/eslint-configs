@@ -1,5 +1,14 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.18.0
+
+### Minor Changes
+
+- allow comments in JSONC files with .json extension
+- e920b8e: Allow comments in files that use a `.json` extension but are JSONC by convention:
+  `tsconfig*.json`, `jsconfig*.json` and anything under `.vscode/`. Previously
+  `jsonc/no-comments` flagged them and each project had to turn the rule off itself.
+
 ## 2.17.0
 
 ### Minor Changes
