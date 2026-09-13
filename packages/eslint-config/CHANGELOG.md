@@ -1,5 +1,15 @@
 # @pixpilot/antfu-eslint-config
 
+## 2.17.0
+
+### Minor Changes
+
+- c91b4d5: Make `pnpm/json-enforce-catalog` opt-in. Upstream enables it in any workspace whose `pnpm-workspace.yaml` declares catalogs, which reports every plain version specifier. Turn it back on with `pnpm: { catalogs: true }`.
+
+### Patch Changes
+
+- make pnpm catalog enforcement opt-in
+
 ## 2.16.0
 
 ### Minor Changes
