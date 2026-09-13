@@ -24,3 +24,21 @@ export default config({
   drizzle: true,
 });
 ```
+
+## pnpm catalog rules
+
+`pnpm/json-enforce-catalog` is **off by default**. Upstream turns it on for any
+workspace whose `pnpm-workspace.yaml` already declares catalogs, which then
+reports every plain version specifier in every `package.json`.
+
+Opt in per project when you want every dependency to live in a catalog:
+
+```js
+export default config({
+  pnpm: { catalogs: true },
+});
+```
+
+The other pnpm rules (`pnpm/json-valid-catalog`, `pnpm/json-prefer-workspace-settings`
+and the `pnpm/yaml-*` set) are unaffected. To disable pnpm linting entirely, use
+`pnpm: false`.

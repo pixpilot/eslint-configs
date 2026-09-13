@@ -15,6 +15,7 @@ import {
   javascriptConfigs,
   jsoncConfigs,
   jsxConfigs,
+  pnpmConfigs,
   prettierConfigs,
   promiseConfigs,
   testConfigs,
@@ -96,6 +97,20 @@ export function defineConfig(
 
   if (mergedOptions.prettier) {
     mergedUserConfigs.push(prettierConfigs());
+  }
+
+  /*
+   * `pnpm/json-enforce-catalog` is opt-in: upstream enables it automatically in
+   * any workspace that already uses catalogs, which flags every plain version
+   * specifier. Turn it back on with `pnpm: { catalogs: true }`.
+   */
+  const pnpmOptions = mergedOptions.pnpm;
+  const enforceCatalog =
+    typeof pnpmOptions === 'object' &&
+    pnpmOptions !== null &&
+    pnpmOptions.catalogs === true;
+  if (pnpmOptions !== false && !enforceCatalog) {
+    mergedUserConfigs.push(pnpmConfigs());
   }
 
   if (mergedOptions.turbo) {
