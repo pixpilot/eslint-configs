@@ -1,5 +1,5 @@
 import type { ConfigOptions } from '../../src/types';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 
 const isPackageExists = vi.hoisted(() => vi.fn());
 
@@ -16,6 +16,16 @@ async function drizzleConfigNames(options?: ConfigOptions) {
     .filter((config) => config.plugins?.['drizzle'] != null)
     .map((config) => config.name);
 }
+
+/**
+ * The first `defineConfig()` call pulls in every ESLint plugin through dynamic
+ * imports, which alone can exceed the default 5s per-test timeout. Warm the
+ * module graph up front so the individual tests only measure their own work.
+ */
+beforeAll(async () => {
+  isPackageExists.mockReturnValue(false);
+  await drizzleConfigNames();
+}, 60_000);
 
 describe('drizzle auto-detection', () => {
   it('enables the rules when drizzle-orm is installed', async () => {
