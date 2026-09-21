@@ -1,5 +1,11 @@
 # @pixpilot/eslint-config-react
 
+## 0.10.0
+
+### Minor Changes
+
+- enable `allowConstantExport` for `react-refresh/only-export-components`
+
 ## 0.9.2
 
 ### Patch Changes
