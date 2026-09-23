@@ -43,12 +43,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           build: 'false'
 
-      # TEMPORARY: remove after confirming the Telegram failure notification.
-      - name: Intentional notification smoke-test failure
-        run: |
-          echo "::error::Intentional failure to test the Telegram notification"
-          exit 1
-
       - name: Release
         uses: pixpilot/changesets-autopilot@v1
         with:
