@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 3.0.0
+
+### Major Changes
+
+- enforce pnpm dependency catalogs
+
 ## 2.18.0
 
 ### Minor Changes

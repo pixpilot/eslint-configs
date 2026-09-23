@@ -1,5 +1,15 @@
 # @pixpilot/eslint-config-next
 
+## 1.0.0
+
+### Major Changes
+
+- enforce pnpm dependency catalogs
+
+### Patch Changes
+
+- @pixpilot/eslint-config-react@0.10.1
+
 ## 0.2.13
 
 ### Patch Changes
