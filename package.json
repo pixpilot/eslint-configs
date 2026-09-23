@@ -40,7 +40,7 @@
     "gen:package": "npx @pixpilot/scaffoldfy --config ./generators/package/scaffoldfy.json"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.30.0",
+    "@changesets/cli": "catalog:dev",
     "@commitlint/cli": "catalog:dev",
     "@commitlint/config-conventional": "catalog:dev",
     "@internal/prettier-config": "workspace:*",

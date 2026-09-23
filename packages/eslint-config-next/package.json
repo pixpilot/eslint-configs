@@ -46,7 +46,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore"
   },
   "dependencies": {
-    "@next/eslint-plugin-next": "^15.5.15",
+    "@next/eslint-plugin-next": "catalog:prod",
     "@pixpilot/eslint-config-react": "workspace:*"
   },
   "devDependencies": {

@@ -54,10 +54,10 @@
   },
   "dependencies": {
     "@fastify/deepmerge": "catalog:prod",
-    "@pixpilot/antfu-eslint-config": "^5.0.0",
+    "@pixpilot/antfu-eslint-config": "catalog:prod",
     "@pixpilot/drizzle-config": "workspace:*",
-    "eslint-config-prettier": "^10.1.8",
-    "local-pkg": "^1.1.2"
+    "eslint-config-prettier": "catalog:prod",
+    "local-pkg": "catalog:prod"
   },
   "devDependencies": {
     "@internal/eslint-config": "workspace:*",
@@ -68,7 +68,7 @@
     "@pixpilot/dev-config": "catalog:dev",
     "@pixpilot/eslint-test-utils": "workspace:*",
     "@types/node": "catalog:dev",
-    "eslint-flat-config-utils": "^3.2.0",
+    "eslint-flat-config-utils": "catalog:",
     "eslint-plugin-turbo": "catalog:eslint",
     "prettier": "catalog:dev",
     "rollup": "catalog:dev",
