@@ -468,7 +468,7 @@ importers:
         specifier: catalog:dev
         version: 3.17.0
       '@rollup/plugin-node-resolve':
-        specifier: ^16.0.3
+        specifier: catalog:dev
         version: 16.0.3(rollup@4.60.1)
       '@rollup/plugin-terser':
         specifier: catalog:dev
