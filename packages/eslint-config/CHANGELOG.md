@@ -1,5 +1,14 @@
 # @pixpilot/antfu-eslint-config
 
+## 3.1.0
+
+### Minor Changes
+
+- enable 'turbo/no-undeclared-env-vars' rule by default
+- 8a6b9e5: `turbo: true` now enables `turbo/no-undeclared-env-vars` (the rule from
+  `eslint-plugin-turbo`'s recommended config). Previously the option only
+  registered the plugin, so every project had to add the rule itself.
+
 ## 3.0.0
 
 ### Major Changes
