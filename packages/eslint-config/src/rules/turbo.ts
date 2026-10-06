@@ -11,6 +11,9 @@ export async function turboConfigs(): Promise<TypedFlatConfigItem[]> {
       plugins: {
         turbo: turboPlugin,
       },
+      rules: {
+        'turbo/no-undeclared-env-vars': 'error',
+      },
     },
   ];
 }
