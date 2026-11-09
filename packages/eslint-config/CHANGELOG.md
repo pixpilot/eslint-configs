@@ -1,5 +1,15 @@
 # @pixpilot/antfu-eslint-config
 
+## 3.2.0
+
+### Minor Changes
+
+- disable 'vitest/prefer-lowercase-title' rule
+
+### Patch Changes
+
+- correct rule reference for 'prefer-lowercase-title'
+
 ## 3.1.0
 
 ### Minor Changes
