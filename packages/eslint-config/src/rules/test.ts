@@ -32,6 +32,7 @@ export async function testConfigs(): Promise<TypedFlatConfigItem[]> {
         'no-underscore-dangle': 'off',
         'ts/explicit-module-boundary-types': 'off',
         'ts/no-unsafe-declaration-merging': 'off',
+        'vitest/prefer-lowercase-title': 'off',
       },
     },
   ];
