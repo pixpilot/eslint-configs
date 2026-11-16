@@ -33,6 +33,31 @@ describe('configFunc', () => {
 
     expect(Array.isArray(resolved)).toBe(true);
   });
+
+  it.each([undefined, true, { relaxed: true }, { relaxed: false }])(
+    'should respect relaxed test rules with test: %j',
+    async (test) => {
+      const eslint = new ESLint({
+        overrideConfigFile: true,
+        overrideConfig: await defineConfig({
+          ...(test === undefined ? {} : { test }),
+          typescript: false,
+          drizzle: false,
+          gitignore: false,
+        }),
+      });
+      const [result] = await eslint.lintText(
+        `describe('StreamRelay', () => { console.log('testing'); });`,
+        { filePath: 'test/relay/stream-relay.test.js' },
+      );
+      const ruleIds = result?.messages.map((message) => message.ruleId);
+      const shouldReport = typeof test === 'object' && test.relaxed === false;
+
+      for (const ruleId of ['test/prefer-lowercase-title', 'no-console']) {
+        expect(ruleIds?.includes(ruleId)).toBe(shouldReport);
+      }
+    },
+  );
 });
 
 describe('configFunc (integration tests for all rule categories)', () => {

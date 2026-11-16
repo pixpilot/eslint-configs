@@ -88,7 +88,7 @@ export function defineConfig(
   }
 
   if (test) {
-    if (test.relaxed === true) {
+    if (test === true || test.relaxed === true) {
       // Relaxed test rules
       mergedUserConfigs.push(testConfigs());
     }
