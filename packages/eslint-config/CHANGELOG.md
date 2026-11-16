@@ -1,5 +1,11 @@
 # @pixpilot/antfu-eslint-config
 
+## 3.3.0
+
+### Minor Changes
+
+- enhance relaxed test rules handling
+
 ## 3.2.0
 
 ### Minor Changes
